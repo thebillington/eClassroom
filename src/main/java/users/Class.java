@@ -10,7 +10,7 @@ public class Class {
 	
 	public Class(String name) {
 		className = name;
-		students = new ArrayList<student>();
+		students = new ArrayList<Student>();
 	}
 	
 }
