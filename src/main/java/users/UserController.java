@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.UserNotFoundException;
+
 public class UserController {
 
 	private List<User> users;
@@ -15,26 +17,42 @@ public class UserController {
 	}
 	
 	public String newUser(String u, String e, String p, int d, int m, int y, boolean teacher) {
-		
+
 		for(User user: users) {
 			
 			if(user.getUsername().equals(u)) {
-				return "error: username already in use";
+				return "Username already in use!";
 			}
 			if(user.getEmail().equals(e)) {
-				return "error: email already in use";
-			}
-			
-			if(teacher) {
-				users.add(new Teacher(u, e, p, d, m, y));
-			}
-			else {
-				users.add(new Student(u, e, p, d, m, y));
+				return "Email is already in use!";
 			}
 			
 		}
 		
-		return "success";
+		if(teacher) {
+			users.add(new Teacher(u, e, p, d, m, y));
+		}
+		else {
+			users.add(new Student(u, e, p, d, m, y));
+		}
+		
+		return "Signed up successfully!";
+	}
+	
+	public String login(String u, String p) {
+		
+		for(User user: users) {	
+			
+			if(user.getEmail().equals(u) || user.getUsername().equals(u)) {
+				if(user.getPassword().equals(p)) {
+					return "Login was successful!";
+				}
+				return "Incorrect password!";
+			}
+			
+		}
+
+		return "Incorrect username or email!";
 	}
 	
 	private int getAge(int d, int m, int y) {

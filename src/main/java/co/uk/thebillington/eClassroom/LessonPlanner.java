@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exceptions.UserNotFoundException;
 import lessons.Lesson;
 
 public class LessonPlanner extends HttpServlet {
@@ -26,25 +27,31 @@ public class LessonPlanner extends HttpServlet {
 		Lesson.resetError();
 
 		if ("login".equals(request.getParameter("request"))) {
-			request.getParameter("username");
-			request.getParameter("password");
+
+			try {
+				Lesson.login(request.getParameter("email"), request.getParameter("password"));
+				request.getRequestDispatcher("/homepage.jsp").forward(request, response);
+			} catch (UserNotFoundException e) {
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
+			}
 		}
 
 		if ("signup".equals(request.getParameter("request"))) {
-			
-			if("student".equals(request.getParameter("type"))) {	
-				Lesson.addUser(request.getParameter("email"), request.getParameter("username"),
-						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
-						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")), false);
-			}
-			else {
-				Lesson.addUser(request.getParameter("email"), request.getParameter("username"),
-						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
-						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")), true);
-			}
-		}
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+			if ("student".equals(request.getParameter("type"))) {
+				Lesson.addUser(request.getParameter("email"), request.getParameter("username"),
+						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
+						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")),
+						false);
+			} else {
+				Lesson.addUser(request.getParameter("email"), request.getParameter("username"),
+						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
+						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")),
+						true);
+			}
+
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
+		}
 
 	}
 
