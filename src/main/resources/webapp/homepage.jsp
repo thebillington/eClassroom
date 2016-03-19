@@ -1,3 +1,15 @@
+<%
+Cookie[] cookies = request.getCookies();
+Cookie cookie = null;
+if( cookies != null ){
+   for (int i = 0; i < cookies.length; i++){
+        if(cookies[i].getName().equals("user")){
+            cookie = cookies[i];
+        }
+    }   
+}
+%>
+
 <html>
 <%@ page session="true"%>
     <head>
@@ -11,7 +23,14 @@
     
     <p style = "text-align: center; top: 2px; color: red;"><jsp:getProperty name="lesson" property="error"/></p>
     
-    <p>Welcome .</p>
+    <%
+    if(cookie != null) {
+       out.println("<p>Hello " + cookie.getValue() + "</p>");
+    }
+    else {
+       out.println("<p>Hello " + cookie.getValue() + "</p>");
+    }
+    %>
 
 </body>
 </html>

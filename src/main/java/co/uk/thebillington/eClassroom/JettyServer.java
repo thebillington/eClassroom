@@ -46,11 +46,9 @@ public class JettyServer {
 		
 		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
 		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
-		ServletHolder homepage = new ServletHolder("Homepage", HomeServlet.class);
 
 		context.addServlet(index, "/");
 		context.addServlet(login, "/login");
-		context.addServlet(homepage, "/home");
 
 		server.setHandler(context);
 

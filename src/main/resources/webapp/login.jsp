@@ -6,6 +6,7 @@
     </head>
     
 <body>
+    
 <jsp:useBean id='lesson' scope='session' class='lessons.Lesson' type="lessons.Lesson" />
     
     <p style = "text-align: center; top: 2px; color: red;"><jsp:getProperty name="lesson" property="error"/></p>
@@ -16,7 +17,7 @@
         
             <h3>Login</h3>
             
-            <form action="lesson" method="POST" >
+            <form action="login" method="POST" >
                 
                 <input type="hidden" name="request" value="login">
                 
@@ -31,7 +32,7 @@
             
             <h3>Sign up</h3>
             
-            <form action="lesson" method="POST" >
+            <form action="login" method="POST" >
                 
                 <input type="hidden" name="request" value="signup">
                 
