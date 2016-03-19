@@ -6,6 +6,8 @@ import users.UserController;
 
 public class Lesson implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	// Create an empty error string
 	private static String error = "";
 	private static UserController uc = new UserController();

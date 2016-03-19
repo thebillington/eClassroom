@@ -7,23 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.webapp.WebAppContext;
+import users.User;
 
-public class LoginServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 	
-	WebAppContext context;
+	private User u;
 	
 	private static final long serialVersionUID = 1L;
 	
-	public LoginServlet(WebAppContext context) {
-		this.context = context;
+	public HomeServlet(User u) {
+		this.u = u;
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/homepage.jsp").forward(request, response);
 
 	}
 
