@@ -1,0 +1,99 @@
+#profileOptions {
+    position: relative;
+    width: 25%;
+    left: 5%;
+    height: 90%;
+    top: 5%;
+}
+
+#profileOptions ul {
+    position: absolute;
+    padding: 0;
+    width: 100%;
+}
+
+#profileOptions li {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#viewOp {
+    background-color: #555;
+}
+
+#profileOptions li:hover {
+    background-color: #555;
+}
+
+#profileView {
+    position: absolute;
+    width: 60%;
+    left: 35%;
+    overflow-y: scroll;
+    height: 90%;
+    top: 5%;
+    background-color: #999;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+#profileEdit {
+    position: absolute;
+    width: 60%;
+    left: 35%;
+    overflow-y: scroll;
+    height: 90%;
+    top: 5%;
+    background-color: #999;
+    visibility: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+#classes {
+    position: absolute;
+    width: 60%;
+    left: 35%;
+    overflow-y: scroll;
+    height: 90%;
+    top: 5%;
+    background-color: #999;
+    visibility: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+#work {
+    position: absolute;
+    width: 60%;
+    left: 35%;
+    overflow-y: scroll;
+    height: 90%;
+    top: 5%;
+    background-color: #999;
+    visibility: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+#delete {
+    position: absolute;
+    width: 60%;
+    left: 35%;
+    overflow-y: scroll;
+    height: 90%;
+    top: 5%;
+    background-color: #999;
+    visibility: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    border-radius: 5px;
+}

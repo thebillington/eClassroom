@@ -2,6 +2,11 @@
 
 <html>
     
+    <%@ page session="true"%>
+        
+    <head>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css" type="text/css" />
+    
 <%@include file="/includes/header.jsp" %>
     
     <div id="login">

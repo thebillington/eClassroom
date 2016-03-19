@@ -1,9 +1,6 @@
-<%@ page session="true"%>
-    <head>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" />
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css" type="text/css" />
-        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css" type="text/css" />
-    <title>eClassroom Homepage</title>
+    <title>eClassroom</title>
     </head>
     
 <body>
