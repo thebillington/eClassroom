@@ -13,7 +13,6 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import users.User;
 import users.UserController;
 
 public class JettyServer {
@@ -46,10 +45,12 @@ public class JettyServer {
 		context.addBean(new ServletContainerInitializersStarter(context), true);
 		
 		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
-		ServletHolder login = new ServletHolder(new LoginServlet(context));
+		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
+		ServletHolder homepage = new ServletHolder("Homepage", HomeServlet.class);
 
 		context.addServlet(index, "/");
 		context.addServlet(login, "/login");
+		context.addServlet(homepage, "/home");
 
 		server.setHandler(context);
 
