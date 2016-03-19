@@ -49,10 +49,12 @@ public class JettyServer {
 		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
 		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
 		ServletHolder logout = new ServletHolder("Logout", LogoutServlet.class);
+		ServletHolder profile = new ServletHolder("Profile", ProfileServlet.class);
 
 		context.addServlet(index, "/index");
 		context.addServlet(login, "/login");
 		context.addServlet(logout, "/logout");
+		context.addServlet(profile, "/profile");
 
 		server.setHandler(context);
 
