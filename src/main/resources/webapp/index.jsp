@@ -7,7 +7,7 @@
     
 <body>
 
-    Welcome to eClassroom. Click <a href="login.jsp">here</a> to login!
+    Welcome to eClassroom. Click <a href="login">here</a> to login!
 
 </body>
 </html>

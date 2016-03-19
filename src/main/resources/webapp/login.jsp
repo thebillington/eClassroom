@@ -16,7 +16,7 @@
         
             <h3>Login</h3>
             
-            <form action="leddon" method="POST" >
+            <form action="lesson" method="POST" >
                 
                 <input type="hidden" name="request" value="login">
                 

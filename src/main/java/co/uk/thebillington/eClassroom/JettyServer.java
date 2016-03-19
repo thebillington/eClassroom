@@ -41,10 +41,13 @@ public class JettyServer {
 		context.setAttribute("org.eclipse.jetty.containerInitializers", initializers);
 		context.setAttribute(InstanceManager.class.getName(), new SimpleInstanceManager());
 		context.addBean(new ServletContainerInitializersStarter(context), true);
-
+		
+		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
+		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
 		ServletHolder lessonPlanner = new ServletHolder("Lesson Planner", LessonPlanner.class);
 
-		context.addServlet(lessonPlanner, "/");
+		context.addServlet(index, "/");
+		context.addServlet(login, "/login");
 
 		server.setHandler(context);
 

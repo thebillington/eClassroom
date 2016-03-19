@@ -16,8 +16,8 @@ public class Lesson implements java.io.Serializable {
 		return error;
 	}
 	
-	public static void setError(String error) {
-		error = error;
+	public static void setError(String e) {
+		error = e;
 	}
 
 	// Reset our error back to empty string
@@ -32,10 +32,20 @@ public class Lesson implements java.io.Serializable {
 		if(!error.equals("Login was successful!")) {
 			throw new UserNotFoundException(error);
 		}
+		
+		thisUser = uc.getUser(u);
 	}
 	
 	public static void addUser(String e, String u, String p, int d, int m, int y, boolean teacher) {
 		error = uc.newUser(u, e, p, d, m, y, teacher);
+	}
+	
+	public String getUsername() {
+		return thisUser.getUsername();
+	}
+	
+	public String getEmail() {
+		return thisUser.getEmail();
 	}
 
 }
