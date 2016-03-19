@@ -1,19 +1,12 @@
+<%@include file="/includes/cookie.jsp" %>
+
 <html>
-<%@ page session="true"%>
-    <head>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
-    <title>Test Page</title>
-    </head>
     
-<body>
+<%@include file="/includes/header.jsp" %>
     
-<jsp:useBean id='lesson' scope='session' class='lessons.Lesson' type="lessons.Lesson" />
+    <div id="login">
     
-    <p style = "text-align: center; top: 2px; color: red;"><jsp:getProperty name="lesson" property="error"/></p>
-    
-    <div style="position: absolute; top: 10%; width: 40%; height: 80%; border: 2px solid black; left: 30%; border-radius: 10px;">
-    
-        <div style="position:absolute; top:100px; width: 80%; left: 10%;">
+        <div id="loginBox">
         
             <h3>Login</h3>
             

@@ -13,11 +13,15 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 
+import index.HomeController;
+import lessons.Lesson;
 import users.UserController;
 
 public class JettyServer {
 
 	public static void main(String[] args) {
+		
+		HomeController.addUser("billy.rebecchi@googlemail.com", "thebillington", "irule", 29, 11, 1994, true);
 
 		Server server = new Server(8080);
 
@@ -46,9 +50,11 @@ public class JettyServer {
 		
 		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
 		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
+		ServletHolder logout = new ServletHolder("Logout", LogoutServlet.class);
 
-		context.addServlet(index, "/");
+		context.addServlet(index, "/index");
 		context.addServlet(login, "/login");
+		context.addServlet(logout, "/logout");
 
 		server.setHandler(context);
 
