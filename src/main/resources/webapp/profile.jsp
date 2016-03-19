@@ -30,7 +30,13 @@
         </div>
         
         <div id="profileView">
-            
+            <p>Unique learner ID: </p>
+            <p>Username: <% out.print(thisUser.getUsername()); %></p>
+            <p>Email: <% out.print(thisUser.getEmail()); %></p>
+            <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
+            <p>First name: </p>
+            <p>Last name: </p>
+            <p>School: </p>
         </div>
         
         <div id="profileEdit">
