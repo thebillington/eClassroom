@@ -14,8 +14,8 @@
                 
                 <input type="hidden" name="request" value="login">
                 
-                Email/Username: <input type="text" name="email" value="email"><br /><br />
-                Password: <input type="password" name="password" value="password"><br /><br />
+                Email/Username: <input type="text" name="email" value="thebillington"><br /><br />
+                Password: <input type="password" name="password" value="irule"><br /><br />
                 
                 <input type="submit" />
                 

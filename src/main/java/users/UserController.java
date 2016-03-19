@@ -64,6 +64,19 @@ public class UserController {
 
 		return "Incorrect username or email!";
 	}
+	
+	public User retrieveUser(String u) {
+
+		for (User user : users) {
+
+			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
+				return user;
+			}
+
+		}
+
+		return null;
+	}
 
 	private int getAge(int d, int m, int y) {
 

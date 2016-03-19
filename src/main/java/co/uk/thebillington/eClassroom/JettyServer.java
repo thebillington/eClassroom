@@ -14,8 +14,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import index.HomeController;
-import lessons.Lesson;
-import users.UserController;
 
 public class JettyServer {
 

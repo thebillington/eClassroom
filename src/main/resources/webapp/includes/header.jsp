@@ -16,7 +16,7 @@
     
     <%
     if(cookie != null) {
-       out.println("<li><a href='profile'>" + cookie.getValue() + "</a></li>");
+       out.println("<li><a href='profile'>" + thisUser.getUsername() + "</a></li>");
        out.println("<li class='logout'><a href='/logout'>Logout</a></li>");
     }
     else {
