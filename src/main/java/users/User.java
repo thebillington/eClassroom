@@ -10,13 +10,16 @@ public class User {
 	private int month;
 	private int year;
 	
-	public User(String u, String e, String p, int d, int m, int y) {
+	private int id;
+	
+	public User(String u, String e, String p, int d, int m, int y, int id) {
 		username = u;
 		email = e;
 		password = p;
 		day = d;
 		month = m;
 		year = y;
+		this.id = id;
 	}
 	
 	public String getUsername() {
@@ -54,6 +57,9 @@ public class User {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+	public int getID() {
+		return id;
 	}
 	
 }

@@ -41,9 +41,9 @@ public class UserController {
 		}
 
 		if (teacher) {
-			users.add(new Teacher(u, e, p, d, m, y));
+			users.add(new Teacher(u, e, p, d, m, y, users.size()));
 		} else {
-			users.add(new Student(u, e, p, d, m, y));
+			users.add(new Student(u, e, p, d, m, y, users.size()));
 		}
 
 		return "Signed up successfully!";
