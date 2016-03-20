@@ -15,6 +15,7 @@
         
     <head>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile.css" type="text/css" />
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile-classes.css" type="text/css" />
     
     <%@include file="/includes/header.jsp" %>
         
@@ -64,7 +65,7 @@
             
             <form action="profile" method="POST" >
                 
-                <input type="hidden" name="request" value="update">
+                <input type="hidden" name="request" value="updateuser">
                 <input type="hidden" name="email" value="<% out.print(thisUser.getEmail()); %>">
                 
                 <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
@@ -77,7 +78,7 @@
                 
                 <p>Confirm Password: <input type="password" name="password" value="password"></p>
                 
-                <input type="submit" />
+                <input type="submit" value="Create Class"/>
                 
             </form>
             
@@ -90,14 +91,26 @@
             if(thisUser.isTeacher()) {
                 Teacher t = (Teacher) thisUser;
                 classes = t.getClasses();
+                out.print("<form action='profile' method='POST' >");
+                out.print("<input type='hidden' name='request' value='newclass'>");
+                out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                out.print("Class name: <input type='text' name='classname' value='Class name'> ");
+                out.print("<input type='submit' value='Create class'/>");
+                out.print("</form>");
             }
             else {
                 Student s = (Student) thisUser;
                 classes = s.getClasses();
+                out.print("<form action='profile' method='POST' >");
+                out.print("<input type='hidden' name='request' value='searchclass'>");
+                out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                out.print("Search: <input type='text' name='searchterm' value='Search term'> ");
+                out.print("<input type='submit' value='search'/>");
+                out.print("</form>");
             }
             if(classes.size() == 0) {
                 if(thisUser.isTeacher()) {
-                    out.print("<p>Looks like you haven't created any classes yet, click on 'new class' to get started.</p>");
+                    out.print("<p>Looks like you haven't created any classes yet, click on 'create class' to get started.</p>");
                 }
                 else {
                     out.print("<p>Looks like you haven't subscribed to any classes yet, search for a class to get started.</p>");

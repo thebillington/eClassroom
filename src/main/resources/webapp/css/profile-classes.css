@@ -1,0 +1,11 @@
+#newClass {
+    position: absolute;
+    border: 2px solid #555;
+    background-color: aqua;
+    color: #444;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}

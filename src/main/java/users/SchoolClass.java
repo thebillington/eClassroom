@@ -11,7 +11,7 @@ public class SchoolClass {
 	private String className;
 	private List<Lesson> lessons;
 	
-	public SchoolClass(String name, String description) {
+	public SchoolClass(String name) {
 		className = name;
 		students = new ArrayList<Student>();
 		lessons = new ArrayList<Lesson>();

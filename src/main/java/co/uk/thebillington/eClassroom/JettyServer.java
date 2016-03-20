@@ -21,6 +21,7 @@ public class JettyServer {
 		
 		//Add default user on starup of server
 		HomeController.addUser("billy.rebecchi@googlemail.com", "thebillington", "irule", 29, 11, 1994, true);
+		HomeController.addUser("charlotte.richardson77@virginmedia.com", "charlene", "irule", 14, 9, 1995, false);
 
 		//Create a new server on port 8080
 		Server server = new Server(8080);

@@ -12,13 +12,13 @@ public class Teacher extends User {
 		classes = new ArrayList<SchoolClass>();
 	}
 	
-	public String createClass(String className, String description) {
+	public String createClass(String className) {
 		for(SchoolClass c : classes) {
 			if(c.getName().equals(className)) {
 				return "exists";
 			}
 		}
-		classes.add(new SchoolClass(className, description));
+		classes.add(new SchoolClass(className));
 		return "success";
 	}
 	

@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 				//Set cookie to expire after an hour
 				usr.setMaxAge(60 * 60);
 				
-				//Add the cookie to the repsonse and then send redirect to the user profile page
+				//Add the cookie to the response and then send redirect to the user profile page
 				response.addCookie(usr);
 				response.sendRedirect("/profile");
 			} else {
