@@ -2,6 +2,7 @@ package users;
 
 public class User {
 
+	//Private fields to store all information relevant to a standard user
 	private String username;
 	private String email;
 	private String password;
@@ -18,6 +19,7 @@ public class User {
 	
 	private boolean teacher;
 	
+	//Constructor
 	public User(String u, String e, String p, int d, int m, int y, int id, boolean teacher) {
 		username = u;
 		email = e;
@@ -32,6 +34,7 @@ public class User {
 		this.teacher = teacher;
 	}
 	
+	//Getters and setter for private variables
 	public String getUsername() {
 		return username;
 	}
@@ -104,6 +107,7 @@ public class User {
 		this.teacher = teacher;
 	}
 
+	//To string method, returning identifiable info of the user
 	@Override
 	public String toString() {
 		return username + " " + email + " " + password + " " + fname + " " + lname + " " + school;

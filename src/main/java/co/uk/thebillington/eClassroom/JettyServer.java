@@ -19,13 +19,17 @@ public class JettyServer {
 
 	public static void main(String[] args) {
 		
+		//Add default user on starup of server
 		HomeController.addUser("billy.rebecchi@googlemail.com", "thebillington", "irule", 29, 11, 1994, true);
 
+		//Create a new server on port 8080
 		Server server = new Server(8080);
 
+		//Set the context path of the web root
 		WebAppContext context = new WebAppContext();	
 		context.setContextPath("/");
 		
+		//Try and se the web root to the webapp folder (this should never fail unless the file system is changed)
 		try {
 			context.setResourceBase(JettyServer.class.getResource("/webapp/").toURI().toASCIIString());
 		} catch (URISyntaxException e) {
@@ -33,6 +37,7 @@ public class JettyServer {
 			System.out.println("Failed to set resource base of context.");
 		}
 		
+		//Add the initializer
 		final ContainerInitializer initializer = new ContainerInitializer(new JettyJasperInitializer(), null);
 		List<ContainerInitializer> initializers = new ArrayList<ContainerInitializer>() {
 			private static final long serialVersionUID = 1L;
@@ -42,22 +47,27 @@ public class JettyServer {
 			}
 		};
 		
+		//Set the initializer attribute of the context, and add the server instance manager
 		context.setAttribute("org.eclipse.jetty.containerInitializers", initializers);
 		context.setAttribute(InstanceManager.class.getName(), new SimpleInstanceManager());
 		context.addBean(new ServletContainerInitializersStarter(context), true);
 		
+		//Create our servlets and give them names
 		ServletHolder index = new ServletHolder("Index", IndexServlet.class);
 		ServletHolder login = new ServletHolder("Login", LoginServlet.class);
 		ServletHolder logout = new ServletHolder("Logout", LogoutServlet.class);
 		ServletHolder profile = new ServletHolder("Profile", ProfileServlet.class);
 
+		//Add each servlet to the context, providing a web path
 		context.addServlet(index, "/index");
 		context.addServlet(login, "/login");
 		context.addServlet(logout, "/logout");
 		context.addServlet(profile, "/profile");
 
+		//Set the context as the handler for the server
 		server.setHandler(context);
 
+		//Run the server
 		try {
 			server.start();
 		} catch (Exception ex) {
