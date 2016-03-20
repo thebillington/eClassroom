@@ -9,7 +9,7 @@
     
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a>Classes</a></li>
+        <li><a href="/classes">Classes</a></li>
     
     <%
     if(thisUser != null) {

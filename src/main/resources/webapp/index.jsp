@@ -11,7 +11,7 @@
         <%@include file="/includes/header.jsp" %>
         
     <div id="main">
-        
+        Index
     </div>
         
         

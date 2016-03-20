@@ -43,17 +43,21 @@ public class ProfileServlet extends HttpServlet {
 		
 		//If request is to add a new user
 		if ("newclass".equals(request.getParameter("request"))) {
-
-			//Set the error string equal to the value when we attempt to add a new
-			String error = "";
 			
+			//Get the current user as a teacher object, and store as a variable
 			Teacher t =  (Teacher) HomeController.getUser(request.getParameter("email"));
 			
-			t.createClass(request.getParameter("classname"));
-
-			// Forward back to the profile page with our success/error message
-			// as a url parameter
-			response.sendRedirect("/profile?m=" + error);
+			//Create a new class with the class name
+			String error = t.createClass(request.getParameter("classname"));
+			
+			//If the attempt to add the class was successful then forward to the classes details page
+			if(error.equals("success")) {
+				
+			}
+			else {
+				//Forward back to the profile page with our error message
+				response.sendRedirect("/profile?m=" + error);
+			}
 		}
 		
 		//If request is to add a new user

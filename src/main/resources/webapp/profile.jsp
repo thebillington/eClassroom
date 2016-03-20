@@ -116,8 +116,12 @@
                     out.print("<p>Looks like you haven't subscribed to any classes yet, search for a class to get started.</p>");
                 }
             }
-            for(SchoolClass c: classes) {
-                out.print(c.getName());
+            else {
+                out.print("<ul>");
+                for(SchoolClass c: classes) {
+                    out.print("<li>" + c.getName() + "</li>");
+                }
+                out.print("</ul>");
             }
             %>
             
