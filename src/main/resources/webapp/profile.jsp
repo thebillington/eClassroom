@@ -15,8 +15,11 @@
     <script><%
         String pane = request.getParameter("p");
         if(pane == null) {
-            
+            //Do nothing
         }
+        else if(pane.equals("edit")) {
+            out.print("window.onload=edit;");
+        }  
         else if(pane.equals("classes")) {
             out.print("window.onload=classes;");
         }  
@@ -41,7 +44,18 @@
         </div>
         
         <div id="profileView">
-            
+            <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
+            <p>Username: <% out.print(thisUser.getUsername()); %></p>
+            <p>Email: <% out.print(thisUser.getEmail()); %></p>
+            <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
+            <p>First name: <% out.print(thisUser.getFname()); %></p>
+            <p>Last name: <% out.print(thisUser.getLname()); %></p>
+            <p>School: <% out.print(thisUser.getSchool()); %></p>
+            <p>Age: <% out.print(thisUser.getAge()); %></p>
+        </div>
+        
+        <div id="profileEdit">
+             
             <p class="error">
             <%
             String msg = request.getParameter("m");
@@ -59,18 +73,6 @@
             }
             %>
             </p>
-                
-            <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
-            <p>Username: <% out.print(thisUser.getUsername()); %></p>
-            <p>Email: <% out.print(thisUser.getEmail()); %></p>
-            <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
-            <p>First name: <% out.print(thisUser.getFname()); %></p>
-            <p>Last name: <% out.print(thisUser.getLname()); %></p>
-            <p>School: <% out.print(thisUser.getSchool()); %></p>
-            <p>Age: <% out.print(thisUser.getAge()); %></p>
-        </div>
-        
-        <div id="profileEdit">
             
             <form action="profile" method="POST" >
                 
@@ -87,7 +89,7 @@
                 
                 <p>Confirm Password: <input type="password" name="password" value="password"></p>
                 
-                <input type="submit" value="Create Class"/>
+                <input type="submit" />
                 
             </form>
             

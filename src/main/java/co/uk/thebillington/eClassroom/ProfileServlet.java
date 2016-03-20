@@ -38,7 +38,7 @@ public class ProfileServlet extends HttpServlet {
 
 			// Forward back to the profile page with our success/error message
 			// as a url parameter
-			response.sendRedirect("/profile?m=" + error);
+			response.sendRedirect("/profile?m=" + error + "&p=edit");
 		}
 		
 		//If request is to add a new user
