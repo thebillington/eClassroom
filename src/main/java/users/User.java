@@ -1,5 +1,7 @@
 package users;
 
+import java.time.LocalDateTime;
+
 public class User {
 
 	//Private fields to store all information relevant to a standard user
@@ -111,6 +113,26 @@ public class User {
 	@Override
 	public String toString() {
 		return username + " " + email + " " + password + " " + fname + " " + lname + " " + school;
+	}
+
+	//Method to return the age of a user
+	public int getAge() {
+
+		int d = LocalDateTime.now().getDayOfYear();
+		int m = LocalDateTime.now().getMonth().getValue();
+		int y = LocalDateTime.now().getYear();
+
+		int age = y - year;
+
+		if (month > m) {
+			age--;
+		}
+		if (month == m && day > d) {
+			age--;
+		}
+
+		return age;
+
 	}
 	
 }

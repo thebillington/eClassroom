@@ -56,6 +56,7 @@
             <p>First name: <% out.print(thisUser.getFname()); %></p>
             <p>Last name: <% out.print(thisUser.getLname()); %></p>
             <p>School: <% out.print(thisUser.getSchool()); %></p>
+            <p>Age: <% out.print(thisUser.getAge()); %></p>
         </div>
         
         <div id="profileEdit">

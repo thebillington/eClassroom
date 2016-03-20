@@ -1,6 +1,5 @@
 package index;
 
-import exceptions.UserNotFoundException;
 import users.User;
 import users.UserController;
 
@@ -17,8 +16,7 @@ public class HomeController implements java.io.Serializable {
 	}
 	
 	//Forward our request to the user controller get user method
-	public static User getUser(String u) throws UserNotFoundException {
-		
+	public static User getUser(String u) {
 		return uc.getUser(u);
 	}
 	
