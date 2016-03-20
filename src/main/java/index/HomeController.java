@@ -3,9 +3,7 @@ package index;
 import users.User;
 import users.UserController;
 
-public class HomeController implements java.io.Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class HomeController {
 	
 	//Create a new User Controller object
 	private static UserController uc = new UserController();

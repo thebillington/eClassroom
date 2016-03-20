@@ -5,11 +5,25 @@ import java.util.List;
 
 public class Teacher extends User {
 	
-	private List<Class> classes;
+	private List<SchoolClass> classes;
 
 	public Teacher(String u, String e, String p, int d, int m, int y, int id) {
 		super(u, e, p, d, m, y, id, true);
-		classes = new ArrayList<Class>();
+		classes = new ArrayList<SchoolClass>();
+	}
+	
+	public String createClass(String className, String description) {
+		for(SchoolClass c : classes) {
+			if(c.getName().equals(className)) {
+				return "exists";
+			}
+		}
+		classes.add(new SchoolClass(className, description));
+		return "success";
+	}
+	
+	public List<SchoolClass> getClasses() {
+		return classes;
 	}
 
 }

@@ -1,3 +1,4 @@
+<%@include file="/includes/users.jsp" %>
 <%@include file="/includes/cookie.jsp" %>
 
 <html>
@@ -83,7 +84,31 @@
         </div>
         
         <div id="classes">
-            Classes
+            
+            <%
+            List<SchoolClass> classes;
+            if(thisUser.isTeacher()) {
+                Teacher t = (Teacher) thisUser;
+                classes = t.getClasses();
+            }
+            else {
+                Student s = (Student) thisUser;
+                classes = s.getClasses();
+            }
+            if(classes.size() == 0) {
+                if(thisUser.isTeacher()) {
+                    out.print("<p>Looks like you haven't created any classes yet, click on 'new class' to get started.</p>");
+                }
+                else {
+                    out.print("<p>Looks like you haven't subscribed to any classes yet, search for a class to get started.</p>");
+                }
+            }
+            for(SchoolClass c: classes) {
+                out.print(c.getName());
+            }
+            %>
+            
+            
         </div>
         
         <div id="work">
