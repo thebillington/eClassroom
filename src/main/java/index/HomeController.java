@@ -12,13 +12,11 @@ public class HomeController implements java.io.Serializable {
 	private static String error = "";
 	private static UserController uc = new UserController();
 	
-	public static void login(String u, String p) throws UserNotFoundException {
+	public static String login(String u, String p) {
 		
 		error = uc.login(u, p);
 		
-		if(!error.equals("Login was successful!")) {
-			throw new UserNotFoundException(error);
-		}
+		return error;
 	}
 	
 	public static User retrieveUser(String u) throws UserNotFoundException {
@@ -26,8 +24,8 @@ public class HomeController implements java.io.Serializable {
 		return uc.retrieveUser(u);
 	}
 	
-	public static void addUser(String e, String u, String p, int d, int m, int y, boolean teacher) {
-		error = uc.newUser(u, e, p, d, m, y, teacher);
+	public static String addUser(String e, String u, String p, int d, int m, int y, boolean teacher) {
+		return uc.newUser(u, e, p, d, m, y, teacher);
 	}
 
 }

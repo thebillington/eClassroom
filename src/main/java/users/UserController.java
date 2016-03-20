@@ -32,10 +32,10 @@ public class UserController {
 		for (User user : users) {
 
 			if (user.getUsername().equals(u)) {
-				return "Username already in use!";
+				return "user";
 			}
 			if (user.getEmail().equals(e)) {
-				return "Email is already in use!";
+				return "email";
 			}
 
 		}
@@ -46,7 +46,7 @@ public class UserController {
 			users.add(new Student(u, e, p, d, m, y, users.size()));
 		}
 
-		return "Signed up successfully!";
+		return "success";
 	}
 
 	public String login(String u, String p) {
@@ -55,14 +55,14 @@ public class UserController {
 
 			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
 				if (user.getPassword().equals(p)) {
-					return "Login was successful!";
+					return "addsuccess";
 				}
-				return "Incorrect password!";
+				return "badpass";
 			}
 
 		}
 
-		return "Incorrect username or email!";
+		return "bademail";
 	}
 	
 	public User retrieveUser(String u) {

@@ -13,7 +13,7 @@ import index.HomeController;
 import lessons.Lesson;
 
 public class LoginServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -30,33 +30,38 @@ public class LoginServlet extends HttpServlet {
 
 		if ("login".equals(request.getParameter("request"))) {
 
-			try {
-				HomeController.login(request.getParameter("email"), request.getParameter("password"));
-				Cookie usr = new Cookie("user", request.getParameter("email"));
-				usr.setMaxAge(60 * 60);
-				response.addCookie(usr);
-				response.sendRedirect("/");
-			} catch (UserNotFoundException e) {
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
+			String error = HomeController.login(request.getParameter("email"), request.getParameter("password"));
+			Cookie usr = new Cookie("user", request.getParameter("email"));
+			usr.setMaxAge(60 * 60);
+			response.addCookie(usr);
+
+			if (error.equals("success")) {
+				response.sendRedirect("/?m=" + error);
+			} else {
+				response.sendRedirect("/login?m=" + error);
 			}
 		}
 
-		if ("signup".equals(request.getParameter("request"))) {
+		if ("signup".equals(request.getParameter("request")))
+
+		{
+
+			String error;
 
 			if ("student".equals(request.getParameter("type"))) {
-				HomeController.addUser(request.getParameter("email"), request.getParameter("username"),
+				error = HomeController.addUser(request.getParameter("email"), request.getParameter("username"),
 						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
 						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")),
 						false);
 			} else {
-				HomeController.addUser(request.getParameter("email"), request.getParameter("username"),
+				error = HomeController.addUser(request.getParameter("email"), request.getParameter("username"),
 						request.getParameter("password"), Integer.parseInt(request.getParameter("day")),
 						Integer.parseInt(request.getParameter("month")), Integer.parseInt(request.getParameter("year")),
 						true);
 			}
-			
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
-			
+
+			response.sendRedirect("/login?m=" + error);
+
 		}
 	}
 
