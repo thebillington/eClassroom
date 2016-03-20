@@ -52,11 +52,12 @@ public class ProfileServlet extends HttpServlet {
 			
 			//If the attempt to add the class was successful then forward to the classes details page
 			if(error.equals("success")) {
-				
+				//Forward back to the profile page with our error message
+				response.sendRedirect("/profile");
 			}
 			else {
 				//Forward back to the profile page with our error message
-				response.sendRedirect("/profile?m=" + error);
+				response.sendRedirect("/profile?m=" + error + "&p=classes");
 			}
 		}
 		

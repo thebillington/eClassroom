@@ -12,6 +12,15 @@
     <%@ page session="true"%>
         
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/profile.js"></script>
+    <script><%
+        String pane = request.getParameter("p");
+        if(pane == null) {
+            
+        }
+        else if(pane.equals("classes")) {
+            out.print("window.onload=classes;");
+        }  
+    %></script>
         
     <head>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/profile.css" type="text/css" />
@@ -107,6 +116,12 @@
                 out.print("Search: <input type='text' name='searchterm' value='Search term'> ");
                 out.print("<input type='submit' value='search'/>");
                 out.print("</form>");
+            }
+            if(msg == null) {
+                //Do nothing
+            }
+            else if(msg.equals("classexists")) {
+                out.print("<p class='error'>A class with that name already exists!</p>");
             }
             if(classes.size() == 0) {
                 if(thisUser.isTeacher()) {

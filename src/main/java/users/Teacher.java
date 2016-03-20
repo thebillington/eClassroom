@@ -15,7 +15,7 @@ public class Teacher extends User {
 	public String createClass(String className) {
 		for(SchoolClass c : classes) {
 			if(c.getName().equals(className)) {
-				return "exists";
+				return "classexists";
 			}
 		}
 		classes.add(new SchoolClass(className));
