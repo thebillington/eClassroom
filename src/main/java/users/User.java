@@ -12,6 +12,10 @@ public class User {
 	
 	private int id;
 	
+	private String fname;
+	private String lname;
+	private String school;
+	
 	public User(String u, String e, String p, int d, int m, int y, int id) {
 		username = u;
 		email = e;
@@ -20,6 +24,9 @@ public class User {
 		month = m;
 		year = y;
 		this.id = id;
+		fname = "First Name";
+		lname = "Last Name";
+		school = "School";
 	}
 	
 	public String getUsername() {
@@ -60,6 +67,35 @@ public class User {
 	}
 	public int getID() {
 		return id;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	
+	@Override
+	public String toString() {
+		return username + " " + email + " " + password + " " + fname + " " + lname + " " + school;
 	}
 	
 }

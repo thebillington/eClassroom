@@ -27,5 +27,9 @@ public class HomeController implements java.io.Serializable {
 	public static String addUser(String e, String u, String p, int d, int m, int y, boolean teacher) {
 		return uc.newUser(u, e, p, d, m, y, teacher);
 	}
+	
+	public static String updateUser(String e, String fname, String lname, String school) {
+		return uc.updateUser(e, fname, lname, school);
+	}
 
 }

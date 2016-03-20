@@ -22,7 +22,7 @@ public class UserController {
 
 		}
 		
-		return users.get(0);
+		return null;
 		
 		
 	}
@@ -42,8 +42,10 @@ public class UserController {
 
 		if (teacher) {
 			users.add(new Teacher(u, e, p, d, m, y, users.size()));
+			System.out.println(users.get(users.size()-1));
 		} else {
 			users.add(new Student(u, e, p, d, m, y, users.size()));
+			System.out.println(users.get(users.size()-1));
 		}
 
 		return "success";
@@ -55,6 +57,7 @@ public class UserController {
 
 			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
 				if (user.getPassword().equals(p)) {
+					System.out.println(user);
 					return "success";
 				}
 				return "badpass";
@@ -70,12 +73,30 @@ public class UserController {
 		for (User user : users) {
 
 			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
+				System.out.println(user);
 				return user;
 			}
 
 		}
 
 		return null;
+	}
+	
+	public String updateUser(String e, String fname, String lname, String school) {
+		
+		for (User user : users) {
+
+			if (user.getEmail().equals(e)) {
+				user.setFname(fname);
+				user.setLname(lname);
+				user.setSchool(school);
+				System.out.println(user);
+				return "success";
+			}
+
+		}
+		
+		return "fail";
 	}
 
 	private int getAge(int d, int m, int y) {

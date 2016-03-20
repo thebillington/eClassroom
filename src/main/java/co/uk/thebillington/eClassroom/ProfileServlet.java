@@ -27,7 +27,11 @@ public class ProfileServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
+		
+		String error = HomeController.updateUser(request.getParameter("email"), request.getParameter("fname"),
+				request.getParameter("lname"), request.getParameter("school"));
+		
+		response.sendRedirect("/profile?m=" + error);
 	}
 
 }

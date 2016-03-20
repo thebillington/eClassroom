@@ -34,13 +34,32 @@
             <p>Username: <% out.print(thisUser.getUsername()); %></p>
             <p>Email: <% out.print(thisUser.getEmail()); %></p>
             <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
-            <p>First name: </p>
-            <p>Last name: </p>
-            <p>School: </p>
+            <p>First name: <% out.print(thisUser.getFname()); %></p>
+            <p>Last name: <% out.print(thisUser.getLname()); %></p>
+            <p>School: <% out.print(thisUser.getSchool()); %></p>
         </div>
         
         <div id="profileEdit">
-            Edit
+            
+            <form action="profile" method="POST" >
+                
+                <input type="hidden" name="request" value="update">
+                <input type="hidden" name="email" value="<% out.print(thisUser.getEmail()); %>">
+                
+                <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
+                <p>Username: <input type="text" name="username" value="<% out.print(thisUser.getUsername()); %>"></p>
+                <p>Email: <% out.print(thisUser.getEmail()); %></p>
+                <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
+                <p>First name: <input type="text" name="fname" value="<% out.print(thisUser.getFname()); %>"></p>
+                <p>Last name: <input type="text" name="lname" value="<% out.print(thisUser.getLname()); %>"></p>
+                <p>School: <input type="text" name="school" value="<% out.print(thisUser.getSchool()); %>"></p>
+                
+                <p>Confirm Password: <input type="password" name="password" value="password"></p>
+                
+                <input type="submit" />
+                
+            </form>
+            
         </div>
         
         <div id="classes">
