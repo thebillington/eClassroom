@@ -19,17 +19,17 @@ public class HomeController implements java.io.Serializable {
 		return error;
 	}
 	
-	public static User retrieveUser(String u) throws UserNotFoundException {
+	public static User getUser(String u) throws UserNotFoundException {
 		
-		return uc.retrieveUser(u);
+		return uc.getUser(u);
 	}
 	
 	public static String addUser(String e, String u, String p, int d, int m, int y, boolean teacher) {
 		return uc.newUser(u, e, p, d, m, y, teacher);
 	}
 	
-	public static String updateUser(String e, String fname, String lname, String school) {
-		return uc.updateUser(e, fname, lname, school);
+	public static String updateUser(String e, String p, String fname, String lname, String school) {
+		return uc.updateUser(e, p, fname, lname, school);
 	}
 
 }

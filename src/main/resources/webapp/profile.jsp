@@ -30,6 +30,25 @@
         </div>
         
         <div id="profileView">
+            
+            <p class="error">
+            <%
+            String msg = request.getParameter("m");
+            if(msg==null) {
+               //Do nothing
+            }
+            else if(msg.equals("success")) {
+               out.print("Details updated successfully.");
+            }
+            else if(msg.equals("badpass")) {
+               out.print("Incorrect password, please try again.");
+            }
+            else if(msg.equals("fail")) {
+               out.print("Something went wrong, try again later.");
+            }
+            %>
+            </p>
+                
             <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
             <p>Username: <% out.print(thisUser.getUsername()); %></p>
             <p>Email: <% out.print(thisUser.getEmail()); %></p>
@@ -47,7 +66,7 @@
                 <input type="hidden" name="email" value="<% out.print(thisUser.getEmail()); %>">
                 
                 <p>Unique learner ID: <% out.print(thisUser.getID()); %></p>
-                <p>Username: <input type="text" name="username" value="<% out.print(thisUser.getUsername()); %>"></p>
+                <p>Username: <% out.print(thisUser.getUsername()); %></p>
                 <p>Email: <% out.print(thisUser.getEmail()); %></p>
                 <p>DOB: <% out.print(thisUser.getDay() + "/" + thisUser.getMonth() + "/" + thisUser.getYear()); %></p>
                 <p>First name: <input type="text" name="fname" value="<% out.print(thisUser.getFname()); %>"></p>

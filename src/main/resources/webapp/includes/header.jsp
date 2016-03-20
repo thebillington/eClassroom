@@ -12,7 +12,7 @@
         <li><a>Classes</a></li>
     
     <%
-    if(cookie != null) {
+    if(thisUser != null) {
        out.println("<li><a href='profile'>" + thisUser.getUsername() + "</a></li>");
        out.println("<li class='logout'><a href='/logout'>Logout</a></li>");
     }

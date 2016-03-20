@@ -15,8 +15,8 @@ body {
     border-radius: 10px;
 }
 
-.error {
+p.error {
     text-align: center;
     color: red;
-    font-size: 50%;
+    font-size: 80%;
 }

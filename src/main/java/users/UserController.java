@@ -13,7 +13,7 @@ public class UserController {
 	}
 
 	public User getUser(String u) {
-		
+
 		for (User user : users) {
 
 			if (user.getUsername().equals(u) || user.getEmail().equals(u)) {
@@ -21,10 +21,9 @@ public class UserController {
 			}
 
 		}
-		
+
 		return null;
-		
-		
+
 	}
 
 	public String newUser(String u, String e, String p, int d, int m, int y, boolean teacher) {
@@ -42,10 +41,8 @@ public class UserController {
 
 		if (teacher) {
 			users.add(new Teacher(u, e, p, d, m, y, users.size()));
-			System.out.println(users.get(users.size()-1));
 		} else {
 			users.add(new Student(u, e, p, d, m, y, users.size()));
-			System.out.println(users.get(users.size()-1));
 		}
 
 		return "success";
@@ -57,7 +54,6 @@ public class UserController {
 
 			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
 				if (user.getPassword().equals(p)) {
-					System.out.println(user);
 					return "success";
 				}
 				return "badpass";
@@ -67,35 +63,25 @@ public class UserController {
 
 		return "bademail";
 	}
-	
-	public User retrieveUser(String u) {
 
-		for (User user : users) {
+	public String updateUser(String e, String p, String fname, String lname, String school) {
 
-			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
-				System.out.println(user);
-				return user;
-			}
-
-		}
-
-		return null;
-	}
-	
-	public String updateUser(String e, String fname, String lname, String school) {
-		
 		for (User user : users) {
 
 			if (user.getEmail().equals(e)) {
-				user.setFname(fname);
-				user.setLname(lname);
-				user.setSchool(school);
-				System.out.println(user);
-				return "success";
+				if (user.getPassword().equals(p)) {
+					user.setFname(fname);
+					user.setLname(lname);
+					user.setSchool(school);
+					return "success";
+				}
+				else {
+					return "badpass";
+				}
 			}
 
 		}
-		
+
 		return "fail";
 	}
 

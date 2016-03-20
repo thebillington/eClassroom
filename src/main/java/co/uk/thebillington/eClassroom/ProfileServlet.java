@@ -28,7 +28,7 @@ public class ProfileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String error = HomeController.updateUser(request.getParameter("email"), request.getParameter("fname"),
+		String error = HomeController.updateUser(request.getParameter("email"), request.getParameter("password"), request.getParameter("fname"),
 				request.getParameter("lname"), request.getParameter("school"));
 		
 		response.sendRedirect("/profile?m=" + error);
