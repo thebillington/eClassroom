@@ -16,7 +16,9 @@ public class User {
 	private String lname;
 	private String school;
 	
-	public User(String u, String e, String p, int d, int m, int y, int id) {
+	private boolean teacher;
+	
+	public User(String u, String e, String p, int d, int m, int y, int id, boolean teacher) {
 		username = u;
 		email = e;
 		password = p;
@@ -27,6 +29,7 @@ public class User {
 		fname = "First Name";
 		lname = "Last Name";
 		school = "School";
+		this.teacher = teacher;
 	}
 	
 	public String getUsername() {
@@ -93,6 +96,14 @@ public class User {
 		this.school = school;
 	}
 	
+	public boolean isTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(boolean teacher) {
+		this.teacher = teacher;
+	}
+
 	@Override
 	public String toString() {
 		return username + " " + email + " " + password + " " + fname + " " + lname + " " + school;
