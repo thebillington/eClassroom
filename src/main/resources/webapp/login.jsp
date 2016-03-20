@@ -6,12 +6,35 @@
         
     <head>
         <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css" type="text/css" />
-    
-<%@include file="/includes/header.jsp" %>
+        <%@include file="/includes/header.jsp" %>
     
     <div id="login">
     
         <div id="loginBox">
+            
+            <p class="error">
+            <%
+            String msg = request.getParameter("m");
+            if(msg==null) {
+               //Do nothing
+            }
+            else if(msg.equals("success")) {
+               out.print("Account created succesfully.");
+            }
+            else if(msg.equals("user")) {
+               out.print("Sorry, that username is already in use.");
+            }
+            else if(msg.equals("email")) {
+               out.print("Sorry, that email is already in use.");
+            }
+            else if(msg.equals("bademail")) {
+               out.print("Sorry, there is no account on record with that username/password.");
+            }
+            else if(msg.equals("badpass")) {
+               out.print("Sorry, you have entered an incorrect password.");
+            }
+            %>
+            </p>
         
             <h3>Login</h3>
             

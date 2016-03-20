@@ -14,3 +14,9 @@ body {
     border: 2px solid #999;
     border-radius: 10px;
 }
+
+.error {
+    text-align: center;
+    color: red;
+    font-size: 50%;
+}

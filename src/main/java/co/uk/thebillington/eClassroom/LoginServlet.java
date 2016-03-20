@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 			response.addCookie(usr);
 
 			if (error.equals("success")) {
-				response.sendRedirect("/?m=" + error);
+				response.sendRedirect("/profile");
 			} else {
 				response.sendRedirect("/login?m=" + error);
 			}

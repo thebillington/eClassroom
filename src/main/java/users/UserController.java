@@ -55,7 +55,7 @@ public class UserController {
 
 			if (user.getEmail().equals(u) || user.getUsername().equals(u)) {
 				if (user.getPassword().equals(p)) {
-					return "addsuccess";
+					return "success";
 				}
 				return "badpass";
 			}
