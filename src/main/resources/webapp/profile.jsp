@@ -116,15 +116,30 @@
                 out.print("<input type='hidden' name='request' value='searchclass'>");
                 out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
                 out.print("Search: <input type='text' name='searchterm' value='Search term'> ");
-                out.print("<input type='submit' value='search'/>");
+                out.print("<input type='submit' value='Search'/>");
                 out.print("</form>");
             }
+            %>
+             
+            <p class="error">
+                
+            <%
             if(msg == null) {
                 //Do nothing
             }
             else if(msg.equals("classexists")) {
                 out.print("<p class='error'>A class with that name already exists!</p>");
             }
+            else if(msg.equals("cdsuccess")) {
+               out.print("Class deleted successfully.");
+            }
+            else if(msg.equals("cdfail")) {
+               out.print("Something went wrong, try again later.");
+            }
+            %>
+            </p>
+            
+            <%
             if(classes.size() == 0) {
                 if(thisUser.isTeacher()) {
                     out.print("<p>Looks like you haven't created any classes yet, click on 'create class' to get started.</p>");
@@ -136,7 +151,14 @@
             else {
                 out.print("<ul>");
                 for(SchoolClass c: classes) {
-                    out.print("<li>" + c.getName() + "</li>");
+                    out.print("<form action='profile' method='POST'>");
+                    out.print("<li><a href='/classes?c=" + c.getName() + "&u=" + thisUser.getUsername() + "'>" + c.getName() + "</a> ");
+                    out.print("<input type='hidden' name='request' value='deleteclass'>");
+                    out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                    out.print("<input type='hidden' name='classname' value='" + c.getName() + "'>");
+                    out.print("<input type='submit' value='Delete'/>");
+                    out.print("</form>");
+                    out.print("</li>");
                 }
                 out.print("</ul>");
             }

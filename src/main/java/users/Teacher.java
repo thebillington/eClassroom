@@ -25,5 +25,33 @@ public class Teacher extends User {
 	public List<SchoolClass> getClasses() {
 		return classes;
 	}
+	
+	public SchoolClass getClass(String className) {
+		for(SchoolClass c : classes) {
+			if(c.getName().equals(className)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	public boolean hasClass(String className) {
+		for(SchoolClass c : classes) {
+			if(c.getName().equals(className)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public String deleteClass(String className) {
+		for(SchoolClass c : classes) {
+			if(c.getName().equals(className)) {
+				classes.remove(c);
+				return "cdsuccess";
+			}
+		}
+		return "cdfail";
+	}
 
 }

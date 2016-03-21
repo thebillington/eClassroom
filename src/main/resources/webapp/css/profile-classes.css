@@ -9,3 +9,11 @@
     padding: 10px;
     cursor: pointer;
 }
+
+#classes ul {
+    list-style-type: none;
+}
+
+#classes li {
+    
+}

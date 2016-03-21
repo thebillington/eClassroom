@@ -41,19 +41,20 @@ public class ProfileServlet extends HttpServlet {
 			response.sendRedirect("/profile?m=" + error + "&p=edit");
 		}
 		
-		//If request is to add a new user
+		//If request is to add a new class
 		if ("newclass".equals(request.getParameter("request"))) {
 			
 			//Get the current user as a teacher object, and store as a variable
 			Teacher t =  (Teacher) HomeController.getUser(request.getParameter("email"));
 			
-			//Create a new class with the class name
-			String error = t.createClass(request.getParameter("classname"));
+			String classname = request.getParameter("classname");
+			
+			//Create a new class with the class name and store the error message in a string
+			String error = t.createClass(classname);
 			
 			//If the attempt to add the class was successful then forward to the classes details page
 			if(error.equals("success")) {
-				//Forward back to the profile page with our error message
-				response.sendRedirect("/profile");
+				response.sendRedirect("/classes?c=" + classname + "&u=" + t.getUsername());
 			}
 			else {
 				//Forward back to the profile page with our error message
@@ -61,15 +62,26 @@ public class ProfileServlet extends HttpServlet {
 			}
 		}
 		
-		//If request is to add a new user
+		//If request is to delete a class
+		if ("deleteclass".equals(request.getParameter("request"))) {
+			
+			//Get the current user as a teacher object, and store as a variable
+			Teacher t =  (Teacher) HomeController.getUser(request.getParameter("email"));
+			
+			String classname = request.getParameter("classname");
+			
+			//Create a new class with the class name and store the error message in a string
+			String error = t.deleteClass(classname);
+
+			//Forward back to the profile page with our error message
+			response.sendRedirect("/profile?m=" + error + "&p=classes");
+		}
+		
+		//If request is to search for a class
 		if ("searchclass".equals(request.getParameter("request"))) {
-
-			//Set the error string equal to the value when we attempt to add a new
-			String error = "";
-
-			// Forward back to the profile page with our success/error message
-			// as a url parameter
-			response.sendRedirect("/profile?m=" + error);
+			
+			//Send a redirect with the search term as a URL parameter
+			response.sendRedirect("/profile?s=" + "&p=classes");
 		}
 		
 		
