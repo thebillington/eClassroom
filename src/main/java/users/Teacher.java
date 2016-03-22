@@ -18,7 +18,7 @@ public class Teacher extends User {
 				return "classexists";
 			}
 		}
-		classes.add(new SchoolClass(className));
+		classes.add(new SchoolClass(className, getUsername()));
 		return "success";
 	}
 	

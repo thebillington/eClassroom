@@ -115,7 +115,8 @@
                 out.print("<form action='profile' method='POST' >");
                 out.print("<input type='hidden' name='request' value='searchclass'>");
                 out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
-                out.print("Search: <input type='text' name='searchterm' value='Search term'> ");
+                out.print("Subscribe: <input type='text' name='classname' value='Class name'> ");
+                out.print("<input type='text' name='teacher' value='Teachers username'> ");
                 out.print("<input type='submit' value='Search'/>");
                 out.print("</form>");
             }
@@ -128,13 +129,19 @@
                 //Do nothing
             }
             else if(msg.equals("classexists")) {
-                out.print("<p class='error'>A class with that name already exists!</p>");
+                out.print("A class with that name already exists!");
             }
             else if(msg.equals("cdsuccess")) {
                out.print("Class deleted successfully.");
             }
             else if(msg.equals("cdfail")) {
                out.print("Something went wrong, try again later.");
+            }
+            else if(msg.equals("subscribed")) {
+               out.print("You are already subscribed to that class.");
+            }
+            else if(msg.equals("subfail")) {
+               out.print("Something drastic went wrong, please contact an administrator.");
             }
             %>
             </p>
@@ -145,7 +152,7 @@
                     out.print("<p>Looks like you haven't created any classes yet, click on 'create class' to get started.</p>");
                 }
                 else {
-                    out.print("<p>Looks like you haven't subscribed to any classes yet, search for a class to get started.</p>");
+                    out.print("<p>Looks like you haven't subscribed to any classes yet. Add a class name and teachers username to get started.</p>");
                 }
             }
             else {

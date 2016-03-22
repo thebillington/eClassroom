@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import index.HomeController;
+import users.SchoolClass;
+import users.Student;
 import users.Teacher;
 import users.User;
 
@@ -80,8 +82,65 @@ public class ProfileServlet extends HttpServlet {
 		//If request is to search for a class
 		if ("searchclass".equals(request.getParameter("request"))) {
 			
-			//Send a redirect with the search term as a URL parameter
-			response.sendRedirect("/profile?s=" + "&p=classes");
+			//Store the class name and teacher username/email as Strings
+			String className = request.getParameter("classname");
+			String teacher = request.getParameter("teacher");
+			
+			//Get the input username as a user object (returns null if no user exists)
+			User u = HomeController.getUser(teacher);
+			
+			//Get this students object
+			Student s = (Student) HomeController.getUser(request.getParameter("email"));
+			
+			//If the user exists, and is a teacher
+			if(u!=null) {
+				if(u.isTeacher()) {	
+					//Get the current user as a teacher object, and store as a variable
+					Teacher t =  (Teacher) u;
+					
+					//If the teacher has a class matching the given name
+					if(t.hasClass(className)) {
+						//Get our class object
+						SchoolClass sc = t.getClass(className);
+						
+						//Subscribe our student to the class, and add the class to the students subscribed classes
+						String classError = sc.addStudent(s);
+						String studentError = s.subClass(sc);
+						
+						//Create a new string to hold our returned error
+						String error;
+						
+						//If this check fails, something major went wrong
+						if(!classError.equals(studentError)) {
+							error = "subfail";
+						}
+						else {
+							//Otherwise set our main error message to the returned message value
+							error = classError;
+						}
+						//If the user is subscribed forward back with error message
+						if(error.equals("subscribed")) {
+							response.sendRedirect("/profile?m=" + error);
+						}
+						else {
+							//Otherwise forward to the class page
+							response.sendRedirect("/classes?c=" + sc.getName() + "&u=" + t.getUsername());
+							
+						}
+					}
+					else {
+						//Send a redirect with a user not a teacher error
+						response.sendRedirect("/profile?m=noclass");
+					}
+				}
+				else {
+					//Send a redirect with a user not a teacher error
+					response.sendRedirect("/profile?m=noteacher");
+				}			
+			} else {
+				//Send a redirect with a user doesn't exist error
+				response.sendRedirect("/profile?m=nouser");
+			}
 		}
 		
 		

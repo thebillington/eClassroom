@@ -15,5 +15,15 @@ public class Student extends User{
 	public List<SchoolClass> getClasses() {
 		return classes;
 	}
+	
+	public String subClass(SchoolClass sc) {
+		for(SchoolClass s: classes) {
+			if(s.getName().equals(sc.getName()) && s.getTeacher().equals(sc.getTeacher())) {
+				return "subscribed";
+			}
+		}
+		classes.add(sc);
+		return "success";
+	}
 
 }
