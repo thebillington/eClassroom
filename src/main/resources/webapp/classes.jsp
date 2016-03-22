@@ -12,8 +12,8 @@
     <%@ page session="true"%>
         
     <head>
-    
-    <%@include file="/includes/header.jsp" %>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/css/classes.css" type="text/css" />
+        <%@include file="/includes/header.jsp" %>
         
     <div id="main">
         
@@ -61,13 +61,48 @@
            
            //If the class exists
            if(classExists) {
+                //Print the title
+                out.print("<div id='title'><h3>" + cls + "</h3></div>");
+           
                 //If the logged in user is a teacher
                 if(thisUser.isTeacher()) {
+           
                     //Cast the logged in user to a teacher object
                     Teacher t = (Teacher) thisUser;
+           
                     //If the username of this teacher equals the username of the teacher that owns the class
                     if(t.getUsername().equals(usr)) {
                         
+                        //Create the lessons section
+                        out.print("<div id='lessons'><h3>Lessons</h3>");
+                        out.print("</div>");
+                        
+                        //Create the student section
+                        out.print("<div id='students'><h3>Students</h3>");
+                        
+                        //Get the students subsribed to the class
+                        List<Student> students = sc.getStudents();
+                        
+                        //If there are no students, print a message
+                        if(students.size() == 0) {
+                            out.print("No students are subscribed to this class.");
+                        }
+                        //Otherwise print a list of students, with the option to unsubscribe them from the class
+                        else {
+                            out.print("<ul>");
+                            for(Student s: students) {
+                                out.print("<form action='profile' method='POST'>");
+                                out.print("<li>" + s.getUsername());
+                                out.print("<input type='hidden' name='request' value='deleteclass'>");
+                                out.print("<input type='hidden' name='email' value='" + s.getEmail() + "'>");
+                                out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                                out.print(" <input type='submit' value='Unsubscribe'/>");
+                                out.print("</form>");
+                                out.print("</li>");
+                            }
+                            out.print("</ul>");
+                        }
+                        out.print("</div>");
                     }
                     //Otherwise show a teacher view for another teachers lesson
                     else {
@@ -86,6 +121,7 @@
         else {
             //Create a variable to store the classes
             List<SchoolClass> classes;
+        
             //If user is a teacher cast to Teacher and get the classes
             if(thisUser.isTeacher()) {
                 Teacher t = (Teacher) thisUser;
