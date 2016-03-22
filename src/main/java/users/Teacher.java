@@ -44,13 +44,29 @@ public class Teacher extends User {
 		return false;
 	}
 	
+	//Method to delete a class
 	public String deleteClass(String className) {
+		
+		//Get the class to be deleted as an object c
 		for(SchoolClass c : classes) {
 			if(c.getName().equals(className)) {
+				
+				//Get the students that are subscribed to the class
+				List<Student> students = c.getStudents();
+				
+				//Unsubscribe each student from the class
+				for(Student s: students) {
+					s.unsubClass(c);
+				}
+				
+				//Remove the class from the list
 				classes.remove(c);
+				
+				//Return a success message
 				return "cdsuccess";
 			}
 		}
+		//Return a fail message
 		return "cdfail";
 	}
 

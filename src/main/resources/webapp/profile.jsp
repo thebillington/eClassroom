@@ -13,6 +13,7 @@
         
     <script type="text/javascript" src="<%=request.getContextPath()%>/javascript/profile.js"></script>
     <script><%
+        //If the request features a p parameter, switch to the given pane
         String pane = request.getParameter("p");
         if(pane == null) {
             //Do nothing
@@ -58,6 +59,7 @@
              
             <p class="error">
             <%
+            //Print the error message returned as a url parameter, if any
             String msg = request.getParameter("m");
             if(msg==null) {
                //Do nothing
@@ -98,10 +100,12 @@
         <div id="classes">
             
             <%
+            //Get the classes for the student or teacher depending on User type
             List<SchoolClass> classes;
             if(thisUser.isTeacher()) {
                 Teacher t = (Teacher) thisUser;
                 classes = t.getClasses();
+                //Print form to create a new class
                 out.print("<form action='profile' method='POST' >");
                 out.print("<input type='hidden' name='request' value='newclass'>");
                 out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
@@ -112,12 +116,13 @@
             else {
                 Student s = (Student) thisUser;
                 classes = s.getClasses();
+                //Print form to subscribe to a class
                 out.print("<form action='profile' method='POST' >");
                 out.print("<input type='hidden' name='request' value='searchclass'>");
                 out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
                 out.print("Subscribe: <input type='text' name='classname' value='Class name'> ");
                 out.print("<input type='text' name='teacher' value='Teachers username'> ");
-                out.print("<input type='submit' value='Search'/>");
+                out.print("<input type='submit' value='Subscribe'/>");
                 out.print("</form>");
             }
             %>
@@ -125,6 +130,7 @@
             <p class="error">
                 
             <%
+            //Print the error message returned as a url parameter, if any
             if(msg == null) {
                 //Do nothing
             }
@@ -143,10 +149,23 @@
             else if(msg.equals("subfail")) {
                out.print("Something drastic went wrong, please contact an administrator.");
             }
+            else if(msg.equals("noclass")) {
+               out.print("Sorry, that class does not exist!.");
+            }
+            else if(msg.equals("noteacher")) {
+               out.print("Sorry that user is not a teacher!");
+            }
+            else if(msg.equals("nouser")) {
+               out.print("Sorry that user does not exist!");
+            }
+            else if(msg.equals("unsubsuccess")) {
+               out.print("Unsubscribed successfully!");
+            }
             %>
             </p>
             
             <%
+            //If the user is not subscribed to any classes, give them a prompt based on user type
             if(classes.size() == 0) {
                 if(thisUser.isTeacher()) {
                     out.print("<p>Looks like you haven't created any classes yet, click on 'create class' to get started.</p>");
@@ -155,6 +174,7 @@
                     out.print("<p>Looks like you haven't subscribed to any classes yet. Add a class name and teachers username to get started.</p>");
                 }
             }
+            //Otherwise print out a list of their classes
             else {
                 out.print("<ul>");
                 for(SchoolClass c: classes) {
@@ -163,7 +183,12 @@
                     out.print("<input type='hidden' name='request' value='deleteclass'>");
                     out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
                     out.print("<input type='hidden' name='classname' value='" + c.getName() + "'>");
-                    out.print("<input type='submit' value='Delete'/>");
+                    //Print delete message for teacher or unsubscribe message for student
+                    if(thisUser.isTeacher()) {
+                        out.print("<input type='submit' value='Delete'/>");
+                    } else {
+                        out.print("<input type='submit' value='Unsubscribe'/>");
+                    }
                     out.print("</form>");
                     out.print("</li>");
                 }

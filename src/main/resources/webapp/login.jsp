@@ -14,6 +14,7 @@
             
             <p class="error">
             <%
+            //Print the error message returned as a url parameter, if any
             String msg = request.getParameter("m");
             if(msg==null) {
                //Do nothing

@@ -37,4 +37,18 @@ public class SchoolClass {
 		return "success";
 	}
 	
+	public String deleteStudent(Student s) {
+		for(Student st: students) {
+			if(s.getUsername().equals(st.getUsername())) {
+				students.remove(s);
+				return "unsubsuccess";
+			}
+		}
+		return "unsubfail";
+	}
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+	
 }

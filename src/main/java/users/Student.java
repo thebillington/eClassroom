@@ -16,6 +16,15 @@ public class Student extends User{
 		return classes;
 	}
 	
+	public SchoolClass getClass(String className) {
+		for(SchoolClass c : classes) {
+			if(c.getName().equals(className)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public String subClass(SchoolClass sc) {
 		for(SchoolClass s: classes) {
 			if(s.getName().equals(sc.getName()) && s.getTeacher().equals(sc.getTeacher())) {
@@ -24,6 +33,16 @@ public class Student extends User{
 		}
 		classes.add(sc);
 		return "success";
+	}
+	
+	public String unsubClass(SchoolClass sc) {
+		for(SchoolClass s: classes) {
+			if(s.getName().equals(sc.getName()) && s.getTeacher().equals(sc.getTeacher())) {
+				classes.remove(sc);
+				return "unsubsuccess";
+			}
+		}
+		return "unsubfail";
 	}
 
 }
