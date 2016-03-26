@@ -19,7 +19,7 @@ public class JettyServer {
 
 	public static void main(String[] args) {
 		
-		//Add default user on starup of server
+		//Add default user on startup of server
 		HomeController.addUser("billy.rebecchi@googlemail.com", "thebillington", "irule", 29, 11, 1994, true);
 		HomeController.addUser("charlotte.richardson77@virginmedia.com", "charlene", "irule", 14, 9, 1995, false);
 
@@ -30,7 +30,7 @@ public class JettyServer {
 		WebAppContext context = new WebAppContext();	
 		context.setContextPath("/");
 		
-		//Try and se the web root to the webapp folder (this should never fail unless the file system is changed)
+		//Try and set the web root to the webapp folder (this should never fail unless the file system is changed)
 		try {
 			context.setResourceBase(JettyServer.class.getResource("/webapp/").toURI().toASCIIString());
 		} catch (URISyntaxException e) {
