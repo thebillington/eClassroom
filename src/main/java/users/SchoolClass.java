@@ -51,4 +51,30 @@ public class SchoolClass {
 		return students;
 	}
 	
+	public String addLesson(Lesson l) {
+		for(Lesson ls: lessons) {
+			if(ls.getName().equals(l.getName()) && (ls.getClassName().equals(l.getClassName()) && ls.getUsername().equals(l.getUsername()))) {
+				return("lexists");
+			}
+		}
+		
+		lessons.add(l);
+		return "lasuccess";
+	}
+	
+	public String deleteLesson(Lesson l) {
+		for(Lesson ls: lessons) {
+			if(ls.getName().equals(l.getName()) && (ls.getClassName().equals(l.getClassName()) && ls.getUsername().equals(l.getUsername()))) {
+				lessons.remove(l);
+				return("ldsuccess");
+			}
+		}
+		
+		return "ldfail";
+	}
+	
+	public List<Lesson> getLessons() {
+		return lessons;
+	}
+	
 }

@@ -1,4 +1,5 @@
 <%@include file="/includes/users.jsp" %>
+<%@include file="/includes/lessons.jsp" %>
 <%@include file="/includes/cookie.jsp" %>
 
 <html>
@@ -75,6 +76,60 @@
                         
                         //Create the lessons section
                         out.print("<div id='lessons'><h3>Lessons</h3>");
+        
+                        //Print the form to create a new lesson
+                        out.print("<form action='classes' method='POST' >");
+                        out.print("<input type='hidden' name='request' value='addlesson'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                        out.print("Lesson name: <input type='text' name='lessonname' value='Lesson name'> ");
+                        out.print("<input type='submit' value='Create lesson'/>");
+                        out.print("</form>");
+           
+                        //Get this classes lessons as a list
+                        List<Lesson> lessons = sc.getLessons();
+        
+                        out.print("<p class='error'>");
+                        //Print the error message returned as a url parameter, if any
+                        String msg = request.getParameter("m");
+                        if(msg==null) {
+                            //Do nothing
+                        }
+                        else if(msg.equals("lasuccess")) {
+                            out.print("Lesson added successfully.");
+                        }
+                        else if(msg.equals("lexists")) {
+                            out.print("A lesson with that name already exists.");
+                        }
+                        else if(msg.equals("ldsuccess")) {
+                            out.print("Lesson deleted successfully.");
+                        }
+                        else if(msg.equals("ldfail")) {
+                            out.print("Couldn't delete lesson.");
+                        }
+                        out.print("</p>");
+                        
+                        //If there are no lessons, print a message
+                        if(lessons.size() == 0) {
+                            out.print("You haven't created any lessons yet.");
+                        }
+                        //Otherwise give them a list of lessons to select from
+                        else {
+                            out.print("<ul>");
+                            for(Lesson l: lessons) {
+                                out.print("<form action='classes' method='POST'>");
+                                out.print("<li><a href=/lessons?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a> ");
+                                out.print("<input type='hidden' name='request' value='deletelesson'>");
+                                out.print("<input type='hidden' name='email' value='" + l.getUsername() + "'>");
+                                out.print("<input type='hidden' name='classname' value='" + l.getClassName() + "'>");
+                                out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                                out.print("<input type='submit' value='Delete'/>");
+                                out.print("</form>");
+                                out.print("</li>");
+                            }      
+                            out.print("</ul>");
+                        }
+                        
                         out.print("</div>");
                         
                         //Create the student section
