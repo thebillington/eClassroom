@@ -65,7 +65,7 @@ public class SchoolClass {
 	public String deleteLesson(Lesson l) {
 		for(Lesson ls: lessons) {
 			if(ls.getName().equals(l.getName()) && (ls.getClassName().equals(l.getClassName()) && ls.getUsername().equals(l.getUsername()))) {
-				lessons.remove(l);
+				lessons.remove(ls);
 				return("ldsuccess");
 			}
 		}

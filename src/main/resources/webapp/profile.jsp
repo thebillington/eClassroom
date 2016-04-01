@@ -179,7 +179,7 @@
                 out.print("<ul>");
                 for(SchoolClass c: classes) {
                     out.print("<form action='profile' method='POST'>");
-                    out.print("<li><a href='/classes?c=" + c.getName() + "&u=" + thisUser.getUsername() + "'>" + c.getName() + "</a> ");
+                    out.print("<li><a href='/classes?c=" + c.getName() + "&u=" + c.getTeacher() + "'>" + c.getName() + "</a> ");
                     out.print("<input type='hidden' name='request' value='deleteclass'>");
                     out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
                     out.print("<input type='hidden' name='classname' value='" + c.getName() + "'>");

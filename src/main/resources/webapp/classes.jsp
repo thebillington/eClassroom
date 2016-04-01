@@ -166,11 +166,54 @@
                 }
                 //Otherwise the user is a student
                 else {
+                    //Get the user object as a teacher, so that we can return the class
+                    Teacher t = (Teacher) u;
+                                    
                     //Cast the logged in user to a student object
-                    Student s = (Student) thisUser;
-                    out.print("Student view");
+                    Student stud = (Student) thisUser;
+                                    
+                    //Create the lessons section
+                    out.print("<div id='lessons'><h3>Lessons</h3>");
+           
+                    //Get this classes lessons as a list
+                    List<Lesson> lessons = sc.getLessons();
+                    
+                    //If there are no lessons, print a message
+                    if(lessons.size() == 0) {
+                        out.print("This class doesn't have any lessons yet.");
+                    }
+                    //Otherwise give them a list of lessons to select from
+                    else {
+                        out.print("<ul>");
+                        for(Lesson l: lessons) {
+                            out.print("<li><a href=/lessons?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a></li>");
+                        }      
+                        out.print("</ul>");
+                    }
+                        
+                    out.print("</div>");
+                        
+                    //Create the student section
+                    out.print("<div id='students'><h3>Students</h3>");
+                        
+                    //Get the students subsribed to the class
+                    List<Student> students = sc.getStudents();
+                        
+                    //If there are no students, print a message
+                    if(students.size() == 0) {
+                        out.print("No students are subscribed to this class.");
+                    }
+                    //Otherwise print a list of students, with the option to unsubscribe them from the class
+                    else {
+                        out.print("<ul>");
+                        for(Student s: students) {
+                            out.print("<li>" + s.getUsername() + "</li>");
+                        }
+                        out.print("</ul>");
+                    }
+                    out.print("</div>");
                 }
-           }
+            }
         }
         //There is no request to view a specific class, so display a list of the users owned/subscribed classes
         else {

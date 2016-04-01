@@ -45,6 +45,22 @@ public class ClassesServlet extends HttpServlet {
 			response.sendRedirect("/classes?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername());
 		}
 
+		// If request is to add a new class
+		if ("deletelesson".equals(request.getParameter("request"))) {
+
+			// Get the current user as a teacher object, and store as a variable
+			Teacher t = (Teacher) HomeController.getUser(request.getParameter("email"));
+			SchoolClass sc = t.getClass(request.getParameter("classname"));
+
+			String lessonName = request.getParameter("lessonname");
+
+			// Create a new class with the class name and store the error
+			// message in a string
+			String error = sc.deleteLesson(new Lesson(lessonName, sc.getName(), t.getUsername()));
+
+			response.sendRedirect("/classes?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername());
+		}
+
 	}
 
 }
