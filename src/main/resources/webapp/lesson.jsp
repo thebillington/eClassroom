@@ -105,9 +105,12 @@
             
                         out.print("<h4>Placement Questions</h4>");
            
+                        //Print the form to update each placement question
+           
                         out.print("<ul>");
-                        //Print the form to update each question
-                        out.print("<li class='easy'>");
+           
+                        //Easy placement question
+                        out.print("<li id='placement0' class='easy'>");
                         out.print("<form action='lesson' method='POST' >");
                         out.print("<input type='hidden' name='request' value='updateq'>");
                         out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
@@ -115,7 +118,7 @@
                         out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
                         out.print("<input type='hidden' name='questiontype' value='placement'>");
                         out.print("<input type='hidden' name='location' value='0'>");
-                        out.print("Question: <input type='text' name='question' value='" + pq[0].getQuestion() + "'><br /><br />");
+                        out.print("Question 1: <input type='text' name='question' value='" + pq[0].getQuestion() + "'><br /><br />");
                         out.print("Correct Answer: <input type='text' name='corans' value='" + pq[0].correctAnswer() + "'><br /><br />");
                         out.print("Incorrect Answer: <input type='text' name='iansone' value='" + pq[0].getAnswer(1) + "'><br /><br />");
                         out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + pq[0].getAnswer(2) + "'><br /><br />");
@@ -123,8 +126,133 @@
                         out.print("<input type='submit' value='Update Question'/>");
                         out.print("</form>");
                         out.print("</li>");
-                        out.print("<li class='medium'>" + pq[1].getQuestion() + "</li>");
-                        out.print("<li class='hard'>" + pq[2].getQuestion() + "</li>");
+                        
+                        //Medium placement question
+                        out.print("<li id='placement1' class='medium'>");
+                        out.print("<form action='lesson' method='POST' >");
+                        out.print("<input type='hidden' name='request' value='updateq'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                        out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                        out.print("<input type='hidden' name='questiontype' value='placement'>");
+                        out.print("<input type='hidden' name='location' value='1'>");
+                        out.print("Question 2: <input type='text' name='question' value='" + pq[1].getQuestion() + "'><br /><br />");
+                        out.print("Correct Answer: <input type='text' name='corans' value='" + pq[1].correctAnswer() + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansone' value='" + pq[1].getAnswer(1) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + pq[1].getAnswer(2) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + pq[1].getAnswer(3) + "'><br /><br />");
+                        out.print("<input type='submit' value='Update Question'/>");
+                        out.print("</form>");
+                        out.print("</li>");
+                        
+           
+                        //Hard placement question
+                        out.print("<li id='placement2' class='hard'>");
+                        out.print("<form action='lesson' method='POST' >");
+                        out.print("<input type='hidden' name='request' value='updateq'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                        out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                        out.print("<input type='hidden' name='questiontype' value='placement'>");
+                        out.print("<input type='hidden' name='location' value='2'>");
+                        out.print("Question 3: <input type='text' name='question' value='" + pq[2].getQuestion() + "'><br /><br />");
+                        out.print("Correct Answer: <input type='text' name='corans' value='" + pq[2].correctAnswer() + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansone' value='" + pq[2].getAnswer(1) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + pq[2].getAnswer(2) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + pq[2].getAnswer(3) + "'><br /><br />");
+                        out.print("<input type='submit' value='Update Question'/>");
+                        out.print("</form>");
+                        out.print("</li>");
+                        out.print("</ul>");
+           
+                        Question[] eq = l.getEasyQuestions();
+            
+                        out.print("<h4>Easy Questions</h4>");
+           
+                        //Print the form to update each easy question
+                        out.print("<ul>");
+           
+                        //Print each question in turn
+                        for(int i = 0; i < eq.length; i++) {
+           
+                            out.print("<li id='easy" + i + "' class='easy'>");
+                            out.print("<form action='lesson' method='POST' >");
+                            out.print("<input type='hidden' name='request' value='updateq'>");
+                            out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                            out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                            out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                            out.print("<input type='hidden' name='questiontype' value='easy'>");
+                            out.print("<input type='hidden' name='location' value='" + i + "'>");
+                            out.print("Question " + (i + 1) + ": <input type='text' name='question' value='" + eq[i].getQuestion() + "'><br /><br />");
+                            out.print("Correct Answer: <input type='text' name='corans' value='" + eq[i].correctAnswer() + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansone' value='" + eq[i].getAnswer(1) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + eq[i].getAnswer(2) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + eq[i].getAnswer(3) + "'><br /><br />");
+                            out.print("<input type='submit' value='Update Question'/>");
+                            out.print("</form>");
+                            out.print("</li>");
+           
+                        }
+                        out.print("</ul>");
+        
+                        Question[] mq = l.getMediumQuestions();
+            
+                        out.print("<h4>Medium Questions</h4>");
+           
+                        //Print the form to update each medium question
+                        out.print("<ul>");
+           
+                        //Print each question in turn
+                        for(int i = 0; i < mq.length; i++) {
+           
+                            out.print("<li id='medium" + i + "' class='medium'>");
+                            out.print("<form action='lesson' method='POST' >");
+                            out.print("<input type='hidden' name='request' value='updateq'>");
+                            out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                            out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                            out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                            out.print("<input type='hidden' name='questiontype' value='medium'>");
+                            out.print("<input type='hidden' name='location' value='" + i + "'>");
+                            out.print("Question " + (i + 1) + ": <input type='text' name='question' value='" + mq[i].getQuestion() + "'><br /><br />");
+                            out.print("Correct Answer: <input type='text' name='corans' value='" + mq[i].correctAnswer() + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansone' value='" + mq[i].getAnswer(1) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + mq[i].getAnswer(2) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + mq[i].getAnswer(3) + "'><br /><br />");
+                            out.print("<input type='submit' value='Update Question'/>");
+                            out.print("</form>");
+                            out.print("</li>");
+           
+                        }
+                        out.print("</ul>");
+                                                     
+                        Question[] hq = l.getHardQuestions();
+            
+                        out.print("<h4>Hard Questions</h4>");
+           
+                        //Print the form to update each medium question
+                        out.print("<ul>");
+           
+                        //Print each question in turn
+                        for(int i = 0; i < hq.length; i++) {
+           
+                            out.print("<li id='hard" + i + "' class='hard'>");
+                            out.print("<form action='lesson' method='POST' >");
+                            out.print("<input type='hidden' name='request' value='updateq'>");
+                            out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                            out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                            out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                            out.print("<input type='hidden' name='questiontype' value='hard'>");
+                            out.print("<input type='hidden' name='location' value='" + i + "'>");
+                            out.print("Question " + (i + 1) + ": <input type='text' name='question' value='" + hq[i].getQuestion() + "'><br /><br />");
+                            out.print("Correct Answer: <input type='text' name='corans' value='" + hq[i].correctAnswer() + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansone' value='" + hq[i].getAnswer(1) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + hq[i].getAnswer(2) + "'><br /><br />");
+                            out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + hq[i].getAnswer(3) + "'><br /><br />");
+                            out.print("<input type='submit' value='Update Question'/>");
+                            out.print("</form>");
+                            out.print("</li>");
+           
+                        }
                         out.print("</ul>");
                         
                         out.print("</div>");

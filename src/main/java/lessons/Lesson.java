@@ -124,7 +124,7 @@ public class Lesson {
 				q = mediumQuestions[location];
 			}
 			if (type.equals("hard")) {
-				q = mediumQuestions[location];
+				q = hardQuestions[location];
 			}
 		}
 		if(q != null) {
