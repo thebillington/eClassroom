@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import index.HomeController;
+import lessons.Lesson;
 import users.SchoolClass;
 import users.Student;
 import users.Teacher;
@@ -29,8 +30,23 @@ public class LessonServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//Do nothing
+
+		// If request is to add a new lesson
+		if ("updateq".equals(request.getParameter("request"))) {
+
+			// Get the current user as a teacher object, and store as a variable
+			// Get the current class
+			// Get the current lesson
+			Teacher t = (Teacher) HomeController.getUser(request.getParameter("email"));
+			SchoolClass sc = t.getClass(request.getParameter("classname"));
+			Lesson l = sc.getLesson(request.getParameter("lessonname"));
+			
+			int loc = Integer.parseInt(request.getParameter("location"));
+			
+			String error = l.updateQuestion(request.getParameter("question"), request.getParameter("corans"), request.getParameter("iansone"), request.getParameter("ianstwo"), request.getParameter("iansthree"), request.getParameter("questiontype"), loc);
+
+			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername() + "&l=" + l.getName());
+		}
 
 	}
 

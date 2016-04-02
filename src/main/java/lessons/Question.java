@@ -31,7 +31,7 @@ public class Question {
 	}
 	
 	public String getAnswer(int i) {
-		if(i > 0 && i < answers.length) {
+		if(i >= 0 && i < answers.length) {
 			return answers[i];
 		}
 		return "Index out of bounds";
@@ -40,5 +40,20 @@ public class Question {
 	public String correctAnswer() {
 		return answers[0];
 	}
-
+	
+	public void setQuestion(String q) {
+		this.question = q;
+	}
+	
+	public void setCorrectAnswer(String ca) {
+		this.answers[0] = ca;
+	}
+	
+	public String setAnswer(int location, String answer) {
+		if(location >= 0 && location < 4) {
+			this.answers[location] = answer;
+			return "success";
+		}
+		return "fail";
+	}
 }

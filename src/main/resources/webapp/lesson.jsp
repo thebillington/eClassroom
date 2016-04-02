@@ -73,6 +73,20 @@
            
             //If the lesson exists
             if(lessonExists) {
+                //Print the error message
+                out.print("<p class='error'>");
+                String msg = request.getParameter("m");
+                if(msg == null) {
+                    //Do nothing
+                }
+                else if(msg.equals("qusuccess")) {
+                    out.print("Question updated successfully!");
+                }
+                else if(msg.equals("fail")) {
+                    out.print("Something went wrong!");
+                }
+                out.print("</p>");
+           
                 //Print the title
                 out.print("<div id='title'><h3>" + lsn + "</h3></div>");
            
@@ -95,17 +109,17 @@
                         //Print the form to update each question
                         out.print("<li class='easy'>");
                         out.print("<form action='lesson' method='POST' >");
-                        out.print("<input type='hidden' name='request' value='update'>");
+                        out.print("<input type='hidden' name='request' value='updateq'>");
                         out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
                         out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
                         out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
                         out.print("<input type='hidden' name='questiontype' value='placement'>");
-                        out.print("<input type='hidden' name='integer' value='0'>");
+                        out.print("<input type='hidden' name='location' value='0'>");
                         out.print("Question: <input type='text' name='question' value='" + pq[0].getQuestion() + "'><br /><br />");
                         out.print("Correct Answer: <input type='text' name='corans' value='" + pq[0].correctAnswer() + "'><br /><br />");
-                        out.print("Incorrect Answer: <input type='text' name='incansone' value='" + pq[0].getAnswer(1) + "'><br /><br />");
-                        out.print("Incorrect Answer: <input type='text' name='incanstwo' value='" + pq[0].getAnswer(2) + "'><br /><br />");
-                        out.print("Incorrect Answer: <input type='text' name='incansthree' value='" + pq[0].getAnswer(3) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansone' value='" + pq[0].getAnswer(1) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='ianstwo' value='" + pq[0].getAnswer(2) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='iansthree' value='" + pq[0].getAnswer(3) + "'><br /><br />");
                         out.print("<input type='submit' value='Update Question'/>");
                         out.print("</form>");
                         out.print("</li>");
