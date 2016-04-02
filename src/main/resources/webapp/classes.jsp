@@ -62,11 +62,12 @@
            
            //If the class exists
            if(classExists) {
-                //Print the title
-                out.print("<div id='title'><h3>" + cls + "</h3></div>");
            
                 //If the logged in user is a teacher
                 if(thisUser.isTeacher()) {
+           
+                    //Print the title
+                    out.print("<div id='title'><h3>" + cls + "</h3></div>");
            
                     //Cast the logged in user to a teacher object
                     Teacher t = (Teacher) thisUser;
@@ -166,11 +167,34 @@
                 }
                 //Otherwise the user is a student
                 else {
+        
                     //Get the user object as a teacher, so that we can return the class
                     Teacher t = (Teacher) u;
                                     
                     //Cast the logged in user to a student object
                     Student stud = (Student) thisUser;
+        
+                    //Print the title
+                    out.print("<form action='profile' method='POST' >");
+                    out.print("<div id='title'><h3>" + cls + " ");
+        
+                    if(stud.hasClass(cls)) {
+                        out.print("<input type='hidden' name='request' value='deleteclass'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'> ");
+                        out.print("<input type='hidden' name='teacher' value='" + sc.getTeacher() + "'> ");
+                        out.print("<input type='submit' value='Unsubscribe'/>");
+                        out.print("</form>");
+                    }
+                    else {
+                        out.print("<input type='hidden' name='request' value='searchclass'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'> ");
+                        out.print("<input type='hidden' name='teacher' value='" + sc.getTeacher() + "'> ");
+                        out.print("<input type='submit' value='Subscribe'/>");
+                        out.print("</form>");   
+                    }
+                    out.print("</h3></div>");
                                     
                     //Create the lessons section
                     out.print("<div id='lessons'><h3>Lessons</h3>");
@@ -185,9 +209,16 @@
                     //Otherwise give them a list of lessons to select from
                     else {
                         out.print("<ul>");
-                        for(Lesson l: lessons) {
-                            out.print("<li><a href='/lesson?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a></li>");
-                        }      
+                        if(stud.hasClass(cls)) {
+                            for(Lesson l: lessons) {
+                                out.print("<li><a href='/lesson?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a></li>");
+                            }
+                        }
+                        else {
+                            for(Lesson l: lessons) {
+                                out.print("<li>" + l.getName() + "</li>");
+                            }
+                        }
                         out.print("</ul>");
                     }
                         
@@ -203,7 +234,7 @@
                     if(students.size() == 0) {
                         out.print("No students are subscribed to this class.");
                     }
-                    //Otherwise print a list of students, with the option to unsubscribe them from the class
+                    //Otherwise print a list of students
                     else {
                         out.print("<ul>");
                         for(Student s: students) {

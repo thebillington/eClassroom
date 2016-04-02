@@ -259,6 +259,10 @@
                     }
                 }
             }
+            //Otherwise user is a student
+            else {
+                
+            }
         }
         else {
             //Print a list of available lessons for this user
