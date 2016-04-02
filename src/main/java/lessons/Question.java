@@ -30,6 +30,13 @@ public class Question {
 		return answers;
 	}
 	
+	public String getAnswer(int i) {
+		if(i > 0 && i < answers.length) {
+			return answers[i];
+		}
+		return "Index out of bounds";
+	}
+	
 	public String correctAnswer() {
 		return answers[0];
 	}

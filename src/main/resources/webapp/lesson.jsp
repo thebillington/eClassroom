@@ -75,6 +75,47 @@
             if(lessonExists) {
                 //Print the title
                 out.print("<div id='title'><h3>" + lsn + "</h3></div>");
+           
+                //If the logged in user is a teacher
+                if(thisUser.isTeacher()) {
+           
+                    //Cast the logged in user to a teacher object
+                    Teacher t = (Teacher) thisUser;
+           
+                    //If the username of this teacher equals the username of the teacher that owns the class
+                    if(t.getUsername().equals(usr)) {
+           
+                        out.print("<div id='questions'>");
+           
+                        Question[] pq = l.getPlacementQuestions();
+            
+                        out.print("<h4>Placement Questions</h4>");
+           
+                        out.print("<ul>");
+                        //Print the form to update each question
+                        out.print("<li class='easy'>");
+                        out.print("<form action='lesson' method='POST' >");
+                        out.print("<input type='hidden' name='request' value='update'>");
+                        out.print("<input type='hidden' name='email' value='" + thisUser.getEmail() + "'>");
+                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                        out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                        out.print("<input type='hidden' name='questiontype' value='placement'>");
+                        out.print("<input type='hidden' name='integer' value='0'>");
+                        out.print("Question: <input type='text' name='question' value='" + pq[0].getQuestion() + "'><br /><br />");
+                        out.print("Correct Answer: <input type='text' name='corans' value='" + pq[0].correctAnswer() + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='incansone' value='" + pq[0].getAnswer(1) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='incanstwo' value='" + pq[0].getAnswer(2) + "'><br /><br />");
+                        out.print("Incorrect Answer: <input type='text' name='incansthree' value='" + pq[0].getAnswer(3) + "'><br /><br />");
+                        out.print("<input type='submit' value='Update Question'/>");
+                        out.print("</form>");
+                        out.print("</li>");
+                        out.print("<li class='medium'>" + pq[1].getQuestion() + "</li>");
+                        out.print("<li class='hard'>" + pq[2].getQuestion() + "</li>");
+                        out.print("</ul>");
+                        
+                        out.print("</div>");
+                    }
+                }
             }
         }
         else {
