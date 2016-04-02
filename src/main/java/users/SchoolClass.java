@@ -77,4 +77,22 @@ public class SchoolClass {
 		return lessons;
 	}
 	
+	public Lesson getLesson(String lessonName) {
+		for(Lesson l : lessons) {
+			if(l.getName().equals(lessonName)) {
+				return l;
+			}
+		}
+		return null;
+	}
+	
+	public boolean hasLesson(String lessonName) {
+		for(Lesson l : lessons) {
+			if(l.getName().equals(lessonName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }

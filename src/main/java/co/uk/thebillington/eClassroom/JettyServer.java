@@ -59,6 +59,7 @@ public class JettyServer {
 		ServletHolder logout = new ServletHolder("Logout", LogoutServlet.class);
 		ServletHolder profile = new ServletHolder("Profile", ProfileServlet.class);
 		ServletHolder classes = new ServletHolder("Classes", ClassesServlet.class);
+		ServletHolder lesson = new ServletHolder("Lesson", LessonServlet.class);
 
 		//Add each servlet to the context, providing a web path
 		context.addServlet(index, "/index");
@@ -66,6 +67,7 @@ public class JettyServer {
 		context.addServlet(logout, "/logout");
 		context.addServlet(profile, "/profile");
 		context.addServlet(classes, "/classes");
+		context.addServlet(lesson, "/lesson");
 
 		//Set the context as the handler for the server
 		server.setHandler(context);

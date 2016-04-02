@@ -118,7 +118,7 @@
                             out.print("<ul>");
                             for(Lesson l: lessons) {
                                 out.print("<form action='classes' method='POST'>");
-                                out.print("<li><a href=/lessons?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a> ");
+                                out.print("<li><a href='/lesson?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a> ");
                                 out.print("<input type='hidden' name='request' value='deletelesson'>");
                                 out.print("<input type='hidden' name='email' value='" + l.getUsername() + "'>");
                                 out.print("<input type='hidden' name='classname' value='" + l.getClassName() + "'>");
@@ -186,7 +186,7 @@
                     else {
                         out.print("<ul>");
                         for(Lesson l: lessons) {
-                            out.print("<li><a href=/lessons?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a></li>");
+                            out.print("<li><a href='/lesson?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "'>" + l.getName() + "</a></li>");
                         }      
                         out.print("</ul>");
                     }

@@ -29,23 +29,24 @@ public class ClassesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// If request is to add a new class
+		// If request is to add a new lesson
 		if ("addlesson".equals(request.getParameter("request"))) {
 
 			// Get the current user as a teacher object, and store as a variable
+			//Get the current class
 			Teacher t = (Teacher) HomeController.getUser(request.getParameter("email"));
 			SchoolClass sc = t.getClass(request.getParameter("classname"));
 
+			//Get the new lesson name
 			String lessonName = request.getParameter("lessonname");
 
-			// Create a new class with the class name and store the error
-			// message in a string
+			// Create a new lesson and store the returned error value
 			String error = sc.addLesson(new Lesson(lessonName, sc.getName(), t.getUsername()));
 
 			response.sendRedirect("/classes?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername());
 		}
 
-		// If request is to add a new class
+		// If request is to delete a lesson
 		if ("deletelesson".equals(request.getParameter("request"))) {
 
 			// Get the current user as a teacher object, and store as a variable
@@ -54,8 +55,7 @@ public class ClassesServlet extends HttpServlet {
 
 			String lessonName = request.getParameter("lessonname");
 
-			// Create a new class with the class name and store the error
-			// message in a string
+			// Delete the lesson
 			String error = sc.deleteLesson(new Lesson(lessonName, sc.getName(), t.getUsername()));
 
 			response.sendRedirect("/classes?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername());
