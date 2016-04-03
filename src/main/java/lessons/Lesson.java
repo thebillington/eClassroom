@@ -1,5 +1,8 @@
 package lessons;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lessons.Question;
 
 public class Lesson {
@@ -23,6 +26,9 @@ public class Lesson {
 	//Create final ints to store the number of placement questions and total number of questions
 	private final int noPQ = 3;
 	private final int noQ = 10;
+	
+	//Create a list to store each attempt at the lesson
+	List<Attempt> attempts;
 
 	public Lesson(String lessonName, String className, String teacherUser) {
 		this.lessonName = lessonName;
@@ -32,6 +38,7 @@ public class Lesson {
 		easyQuestions = new Question[noQ];
 		mediumQuestions = new Question[noQ];
 		hardQuestions = new Question[noQ];
+		attempts = new ArrayList<Attempt>();
 
 		for (int i = 0; i < noQ; i++) {
 			if (i < noPQ) {
@@ -101,6 +108,34 @@ public class Lesson {
 
 	public void setHardQuestions(Question[] hardQuestions) {
 		this.hardQuestions = hardQuestions;
+	}
+	
+	public List<Attempt> getAttempts() {
+		return attempts;
+	}
+	
+	public List<Attempt> getAttempts(String usr) {
+		List<Attempt> usrAttempts = new ArrayList<Attempt>();
+		for(Attempt a: attempts) {
+			if(a.getUsername().equals(usr)) {
+				usrAttempts.add(a);
+			}
+		}
+		return usrAttempts;
+	}
+	
+	public String addAttempt(String user) {
+		int noAttempt = 1;
+		for(Attempt a: attempts) {
+			if(a.getUsername().equals(user)) {
+				if(!a.isComplete()) {
+					return "aincomplete";
+				}
+				noAttempt++;
+			}
+		}
+		attempts.add(new Attempt(user, noAttempt));
+		return "success";
 	}
 
 	public String updateQuestion(String qst, String ca, String iAOne, String iATwo, String iAThree, String type,

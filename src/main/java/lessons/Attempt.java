@@ -10,7 +10,7 @@ public class Attempt {
 	private int qCompleted;
 	private boolean complete;
 	
-	public Attempt(String username, int level, int attemptNumber) {
+	public Attempt(String username, int attemptNumber) {
 		this.username = username;
 		questionLevel = new int[13];
 		questions = new Question[13];

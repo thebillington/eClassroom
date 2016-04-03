@@ -256,12 +256,83 @@
                         out.print("</ul>");
                         
                         out.print("</div>");
+        
+                        out.print("<div id='attempts'><h4>Attempts</h4>");
+        
+                        List<Attempt> attempts = l.getAttempts();
+        
+                        if(attempts.size() == 0) {
+                            out.print("There haven't been any attempts at this lesson yet.");
+                        }
+                        else {
+                            out.print("<ul>");
+        
+                            for(Attempt a: attempts) {
+                                out.print("<li>"); 
+                                out.print("Attempt by: " + a.getUsername());
+                                out.print("</li>");
+                            }
+                            
+                            out.print("</ul>");
+                        }
+        
+                        out.print("</div>");
+                    }
+                    //Logged in user doesn't own the lesson
+                    else {
+                        out.print("Sorry, you don't have permission to view this page.");
+                    }
+                }
+                //Logged in user is a student
+                else {
+                    //Get the user object as a teacher, so that we can return the class
+                    Teacher t = (Teacher) u;
+                                    
+                    //Cast the logged in user to a student object
+                    Student stud = (Student) thisUser;
+        
+                    out.print("<div id='studentAttempts'>");
+        
+                    if(stud.hasClass(cls)) {
+        
+                        //Get the attempts by this student at the lesson
+                        List<Attempt> attempts = l.getAttempts(stud.getUsername());
+        
+                        boolean attemptsComplete = false;
+        
+                        if(attempts.size() == 0) {
+                            out.print("<p>You haven't attempted this lesson yet!</p>");
+                            attemptsComplete = true;
+                        }
+                        else {
+                            out.print("<ul>");
+        
+                            for(Attempt a: attempts) {
+                                out.print("<li>"); 
+                                out.print("Attempt number: " + a.getAttemptNumber());
+                                out.print("</li>");
+                                if(a.isComplete()) {
+                                    attemptsComplete = true;
+                                }
+                            }
+                            
+                            out.print("</ul>");
+                        }
+        
+                        if(attemptsComplete) {
+                            out.print("Start a new attempt.");
+                        }
+                        else {
+                            out.print("Complete previous attempt.");
+                        }
+                    }
+                    else {
+                        out.print("<p>Sorry, you aren't subscribed to this class!</p>");
                     }
                 }
             }
-            //Otherwise user is a student
             else {
-                
+                out.print("Lesson doesn't exist.");
             }
         }
         else {
