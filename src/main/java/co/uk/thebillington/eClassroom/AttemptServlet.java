@@ -6,9 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import users.User;
 
-public class IndexServlet extends HttpServlet {
+public class AttemptServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -17,7 +16,16 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/attempt.jsp").forward(request, response);
 	}
+	
+	// On post method
+		@Override
+		protected void doPost(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+
+			//Do nothing
+
+		}
 
 }

@@ -48,6 +48,20 @@ public class LessonServlet extends HttpServlet {
 
 			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername() + "&l=" + l.getName() + "#" + type + loc);
 		}
+		
+		if("newattempt".equals(request.getParameter("request"))) {
+
+			// Get the current user as a teacher object, and store as a variable
+			// Get the current class
+			// Get the current lesson
+			Teacher t = (Teacher) HomeController.getUser(request.getParameter("email"));
+			SchoolClass sc = t.getClass(request.getParameter("classname"));
+			Lesson l = sc.getLesson(request.getParameter("lessonname"));
+			
+			String error = l.addAttempt(request.getParameter("studuser"));
+
+			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername() + "&l=" + l.getName());
+		}
 
 	}
 

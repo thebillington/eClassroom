@@ -124,18 +124,35 @@ public class Lesson {
 		return usrAttempts;
 	}
 	
-	public String addAttempt(String user) {
+	public String addAttempt(String usr) {
 		int noAttempt = 1;
+		List<Attempt> uAttempts = getAttempts(usr);
+		for(Attempt a: uAttempts) {
+			if(!a.isComplete()) {
+				return "aincomplete";
+			}
+			noAttempt++;
+		}
+		attempts.add(new Attempt(usr, noAttempt));
+		return "success";
+	}
+	
+	public boolean hasAttempt(int no, String usr) {
 		for(Attempt a: attempts) {
-			if(a.getUsername().equals(user)) {
-				if(!a.isComplete()) {
-					return "aincomplete";
-				}
-				noAttempt++;
+			if(a.getAttemptNumber() == no && a.getUsername().equals(usr)) {
+				return true;
 			}
 		}
-		attempts.add(new Attempt(user, noAttempt));
-		return "success";
+		return false;
+	}
+	
+	public Attempt getAttempt(int no, String usr) {
+		for(Attempt a: attempts) {
+			if(a.getAttemptNumber() == no && a.getUsername().equals(usr)) {
+				return a;
+			}
+		}
+		return null;
 	}
 
 	public String updateQuestion(String qst, String ca, String iAOne, String iATwo, String iAThree, String type,

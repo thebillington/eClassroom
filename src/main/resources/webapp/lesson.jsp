@@ -298,7 +298,8 @@
                         //Get the attempts by this student at the lesson
                         List<Attempt> attempts = l.getAttempts(stud.getUsername());
         
-                        boolean attemptsComplete = false;
+                        boolean attemptsComplete = true;
+                        Attempt incompleteAttempt = null;
         
                         if(attempts.size() == 0) {
                             out.print("<p>You haven't attempted this lesson yet!</p>");
@@ -311,8 +312,9 @@
                                 out.print("<li>"); 
                                 out.print("Attempt number: " + a.getAttemptNumber());
                                 out.print("</li>");
-                                if(a.isComplete()) {
-                                    attemptsComplete = true;
+                                if(!a.isComplete()) {
+                                    attemptsComplete = false;
+                                    incompleteAttempt = a;
                                 }
                             }
                             
@@ -320,10 +322,17 @@
                         }
         
                         if(attemptsComplete) {
-                            out.print("Start a new attempt.");
+                            out.print("<form action='lesson' method='POST' >");
+                            out.print("<input type='hidden' name='request' value='newattempt'>");
+                            out.print("<input type='hidden' name='email' value='" + t.getEmail() + "'>");
+                            out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                            out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                            out.print("<input type='hidden' name='studuser' value='" + stud.getUsername() + "'>");
+                            out.print("<input type='submit' value='New Attempt'/>");
+                            out.print("</form>");
                         }
                         else {
-                            out.print("Complete previous attempt.");
+                            out.print("<a href='/attempt?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "&an=" + incompleteAttempt.getAttemptNumber() + "&au=" + stud.getUsername() + "'>Complete unfinished attempt.</a>");
                         }
                     }
                     else {
