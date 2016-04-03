@@ -20,6 +20,7 @@ public class Lesson {
 	private Question[] mediumQuestions;
 	private Question[] hardQuestions;
 
+	//Create final ints to store the number of placement questions and total number of questions
 	private final int noPQ = 3;
 	private final int noQ = 10;
 
