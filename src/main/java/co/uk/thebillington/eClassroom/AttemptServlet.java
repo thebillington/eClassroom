@@ -81,7 +81,6 @@ public class AttemptServlet extends HttpServlet {
 					
 					//Iterate through the answers and find the one that matches students selected answer
 					for(int i = 0; i < answers.length; i++) {
-						System.out.println(answers[i] + "=?" + answer);
 						if(answers[i].equals(answer)) {
 							//Set the value of answerLoc and break the loop
 							answerLoc = i;

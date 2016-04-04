@@ -58,6 +58,7 @@ public class LessonServlet extends HttpServlet {
 			SchoolClass sc = t.getClass(request.getParameter("classname"));
 			Lesson l = sc.getLesson(request.getParameter("lessonname"));
 			
+			//Set the error string equal to the error message from attempting to add the attempt
 			String error = l.addAttempt(request.getParameter("studuser"));
 
 			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername() + "&l=" + l.getName());
