@@ -42,15 +42,15 @@ public class Lesson {
 
 		for (int i = 0; i < noQ; i++) {
 			if (i < noPQ) {
-				placementQuestions[i] = new Question("Question", "Correct Answer", "Incorrect Answer",
-						"Incorrect Answer", "Incorrect Answer");
+				placementQuestions[i] = new Question("Question " + (i + 1), "Correct Answer", "Incorrect Answer 1",
+						"Incorrect Answer 2", "Incorrect Answer 3");
 			}
-			easyQuestions[i] = new Question("Question", "Correct Answer", "Incorrect Answer", "Incorrect Answer",
-					"Incorrect Answer");
-			mediumQuestions[i] = new Question("Question", "Correct Answer", "Incorrect Answer", "Incorrect Answer",
-					"Incorrect Answer");
-			hardQuestions[i] = new Question("Question", "Correct Answer", "Incorrect Answer", "Incorrect Answer",
-					"Incorrect Answer");
+			easyQuestions[i] = new Question("Question " + (i + 1), "Correct Answer", "Incorrect Answer 1", "Incorrect Answer 2",
+					"Incorrect Answer 3");
+			mediumQuestions[i] = new Question("Question " + (i + 1), "Correct Answer", "Incorrect Answer 1", "Incorrect Answer 2",
+					"Incorrect Answer 3");
+			hardQuestions[i] = new Question("Question " + (i + 1), "Correct Answer", "Incorrect Answer 1", "Incorrect Answer 2",
+					"Incorrect Answer 3");
 		}
 	}
 
@@ -108,6 +108,22 @@ public class Lesson {
 
 	public void setHardQuestions(Question[] hardQuestions) {
 		this.hardQuestions = hardQuestions;
+	}
+	
+	public Question getQuestion(int lvl, int q) {
+		if(lvl == 0) {
+			return placementQuestions[q];
+		}
+		if(lvl == 1) {
+			return easyQuestions[q];
+		}
+		if(lvl == 2) {
+			return mediumQuestions[q];
+		}
+		if(lvl == 3) {
+			return hardQuestions[q];
+		}
+		return null;
 	}
 	
 	public List<Attempt> getAttempts() {

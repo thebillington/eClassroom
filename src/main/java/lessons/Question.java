@@ -53,11 +53,10 @@ public class Question {
 	}
 	
 	public static String[] shuffleAnswers(String[] answers) {
-		String[] shuffled = answers;
+		String[] shuffled = answers.clone();
 		Random r = new Random();
 		for(int i = 0; i < shuffled.length; i++) {
 			int x = r.nextInt(4);
-			System.out.print(x);
 			String temp = shuffled[i];
 			shuffled[i] = shuffled[x];
 			shuffled[x] = temp;

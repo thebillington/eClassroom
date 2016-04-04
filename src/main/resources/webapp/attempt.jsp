@@ -129,9 +129,9 @@
                     if(stud.hasClass(cls)) {
                         if(stud.getUsername().equals(a.getUsername())) {
                             Question[] pQ = l.getPlacementQuestions();
-                            Question[] eQ = l.getPlacementQuestions();
-                            Question[] mQ = l.getPlacementQuestions();
-                            Question[] hQ = l.getPlacementQuestions();
+                            Question[] eQ = l.getEasyQuestions();
+                            Question[] mQ = l.getMediumQuestions();
+                            Question[] hQ = l.getHardQuestions();
             
                             if(a.isComplete()) {
                                 out.print("Results");
@@ -178,7 +178,18 @@
                                 String[] answers = Question.shuffleAnswers(thisQuestion.getAnswers());
             
                                 for(String s: answers) {
-                                    out.print("<li ><input type='submit' value='" + s + "'/></li>");
+                                    out.print("<li >");
+                                    out.print("<form action='attempt' method='POST' >");
+                                    out.print("<input type='hidden' name='request' value='answerquestion'>");
+                                    out.print("<input type='hidden' name='email' value='" + t.getEmail() + "'>");
+                                    out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                                    out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                                    out.print("<input type='hidden' name='studuser' value='" + stud.getUsername() + "'>");
+                                    out.print("<input type='hidden' name='attemptnumber' value='" + atn + "'>");
+                                    out.print("<input type='hidden' name='answer' value='" + s + "'>");
+                                    out.print("<input type='submit' value='" + s + "'/>");
+                                    out.print("</form>");
+                                    out.print("</li>");
                                 }
             
                                 out.print("</ul></div>");
