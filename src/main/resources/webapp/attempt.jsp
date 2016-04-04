@@ -124,11 +124,65 @@
                     //Cast the logged in user to a student object
                     Student stud = (Student) thisUser;
             
-                    out.print("<div id='question'>");
+                    out.print("<div id='attempt'>");
         
                     if(stud.hasClass(cls)) {
                         if(stud.getUsername().equals(a.getUsername())) {
-                            out.print("Question");
+                            Question[] pQ = l.getPlacementQuestions();
+                            Question[] eQ = l.getPlacementQuestions();
+                            Question[] mQ = l.getPlacementQuestions();
+                            Question[] hQ = l.getPlacementQuestions();
+            
+                            if(a.isComplete()) {
+                                out.print("Results");
+                            }
+                            else {
+                                int qNo = a.getCompleted();
+                                Question thisQuestion = null;
+                                if(qNo > 2) {
+                                    int level = a.getLevel();
+                                    if(level == 0) {
+                                        out.print("<div id='question' class='easy'>");
+                                        thisQuestion = eQ[qNo - 3];
+                                    }
+                                    if(level == 1) {
+                                        out.print("<div id='question' class='medium'>");
+                                        thisQuestion = mQ[qNo - 3];
+            
+                                    }
+                                    if(level == 2) {
+                                        out.print("<div id='question' class='hard'>");
+                                        thisQuestion = hQ[qNo - 3];
+                                    }
+                                }
+                                else {
+                                    if(qNo == 0) {
+                                        out.print("<div id='question' class='easy'>");
+                                    }
+                                    if(qNo == 1) {
+                                        out.print("<div id='question' class='medium'>");
+            
+                                    }
+                                    if(qNo == 2) {
+                                        out.print("<div id='question' class='hard'>");
+                                    }
+                                    thisQuestion = pQ[qNo];
+                                }
+                                if(thisQuestion != null) {
+                                    out.print(thisQuestion.getQuestion());
+                                }
+                                out.print("</div>");
+            
+                                out.print("<div id='answers'><ul>");
+            
+                                String[] answers = thisQuestion.getAnswers();
+            
+                                for(String s: answers) {
+                                    out.print("<li ><input type='submit' value='" + s + "'/></li>");
+                                }
+            
+                                out.print("</ul></div>");
+                            }
                         }
                         else {
                             out.print("You don't have permission to view this attempt.");
