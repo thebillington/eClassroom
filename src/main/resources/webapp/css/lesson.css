@@ -49,6 +49,7 @@
     width: 42.5%;
     left: 52.5%;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 80%;
     top: 15%;
     background-color: #999;
@@ -63,6 +64,7 @@
     width: 90%;
     left: 5%;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 80%;
     top: 15%;
     background-color: #999;

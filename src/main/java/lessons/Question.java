@@ -1,5 +1,7 @@
 package lessons;
 
+import java.util.Random;
+
 public class Question {
 	
 	//Variables to store the question and answers
@@ -48,5 +50,18 @@ public class Question {
 			return "success";
 		}
 		return "fail";
+	}
+	
+	public static String[] shuffleAnswers(String[] answers) {
+		String[] shuffled = answers;
+		Random r = new Random();
+		for(int i = 0; i < shuffled.length; i++) {
+			int x = r.nextInt(4);
+			System.out.print(x);
+			String temp = shuffled[i];
+			shuffled[i] = shuffled[x];
+			shuffled[x] = temp;
+		}
+		return shuffled;
 	}
 }

@@ -175,7 +175,7 @@
             
                                 out.print("<div id='answers'><ul>");
             
-                                String[] answers = thisQuestion.getAnswers();
+                                String[] answers = Question.shuffleAnswers(thisQuestion.getAnswers());
             
                                 for(String s: answers) {
                                     out.print("<li ><input type='submit' value='" + s + "'/></li>");
