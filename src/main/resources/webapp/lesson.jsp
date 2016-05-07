@@ -269,7 +269,7 @@
         
                             for(Attempt a: attempts) {
                                 out.print("<li>"); 
-                                out.print("Attempt by: " + a.getUsername());
+                                out.print("<a href='/attempt?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "&an=" + a.getAttemptNumber() + "&au=" + a.getUsername() + "'>Attempt " + a.getAttemptNumber() + "</a> by " + a.getUsername());
                                 out.print("</li>");
                             }
                             
@@ -310,11 +310,10 @@
         
                             for(Attempt a: attempts) {
                                 out.print("<li>"); 
-                                out.print("Attempt number: " + a.getAttemptNumber());
+                                out.print("<a href='/attempt?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "&an=" + a.getAttemptNumber() + "&au=" + stud.getUsername() + "'>Attempt " + a.getAttemptNumber() + "</a>");
                                 out.print("</li>");
                                 if(!a.isComplete()) {
                                     attemptsComplete = false;
-                                    incompleteAttempt = a;
                                 }
                             }
                             
@@ -330,9 +329,6 @@
                             out.print("<input type='hidden' name='studuser' value='" + stud.getUsername() + "'>");
                             out.print("<input type='submit' value='New Attempt'/>");
                             out.print("</form>");
-                        }
-                        else {
-                            out.print("<a href='/attempt?l=" + l.getName() + "&u=" + l.getUsername() + "&c=" + l.getClassName() + "&an=" + incompleteAttempt.getAttemptNumber() + "&au=" + stud.getUsername() + "'>Complete unfinished attempt.</a>");
                         }
                     }
                     else {

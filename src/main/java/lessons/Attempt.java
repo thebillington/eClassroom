@@ -23,9 +23,6 @@ public class Attempt {
 		questionLevel = new int[13];
 		answers = new int[13];
 		correct = new boolean[13];
-		questionLevel[0] = 0;
-		questionLevel[1] = 1;
-		questionLevel[2] = 2;
 		qCompleted = 0;
 		this.attemptNumber = attemptNumber;
 		complete = false;
@@ -33,21 +30,23 @@ public class Attempt {
 		correctAtTier = 0;
 		points = 0;
 		tierChange = false;
+		
+		questionLevel[0] = 0;
+		questionLevel[1] = 1;
+		questionLevel[2] = 2;
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public void setLevel(int loc, int lvl) {
-		questionLevel[loc] = lvl;
+	public void setLevel() {
+		questionLevel[qCompleted] = currentLevel;
 	}
 
 	public void answerQuestion(int answer) {
 		//If the attempt is not complete
 		if (!complete) {
-			//Set the level of this question
-			setLevel(answer, currentLevel);
 			
 			//Set the answer
 			answers[qCompleted] = answer;
@@ -73,6 +72,12 @@ public class Attempt {
 			} else {
 				//If the question is wrong set the correct boolean to false
 				correct[qCompleted] = false;
+			}
+			
+			//If not a placement question
+			if(qCompleted > 2) {
+				//Set the level of this question
+				setLevel();
 			}
 			
 			//Increment number of questions completed
@@ -143,6 +148,18 @@ public class Attempt {
 
 	public int getLevel() {
 		return currentLevel;
+	}
+
+	public int[] getQuestionLevels() {
+		return questionLevel;
+	}
+
+	public int[] getAnswers() {
+		return answers;
+	}
+
+	public boolean[] getCorrect() {
+		return correct;
 	}
 
 }

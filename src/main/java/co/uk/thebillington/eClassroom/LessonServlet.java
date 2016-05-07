@@ -44,9 +44,13 @@ public class LessonServlet extends HttpServlet {
 			int loc = Integer.parseInt(request.getParameter("location"));
 			String type = request.getParameter("questiontype");
 			
-			String error = l.updateQuestion(request.getParameter("question"), request.getParameter("corans"), request.getParameter("iansone"), request.getParameter("ianstwo"), request.getParameter("iansthree"), type, loc);
+			String error = l.updateQuestion(request.getParameter("question"),
+					request.getParameter("corans"), request.getParameter("iansone"),
+					request.getParameter("ianstwo"), request.getParameter("iansthree"),
+					type, loc);
 
-			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" + t.getUsername() + "&l=" + l.getName() + "#" + type + loc);
+			response.sendRedirect("/lesson?m=" + error + "&c=" + sc.getName() + "&u=" +
+					t.getUsername() + "&l=" + l.getName() + "#" + type + loc);
 		}
 		
 		if("newattempt".equals(request.getParameter("request"))) {

@@ -66,5 +66,46 @@
 }
 
 .hard {
-    background-color: orangered;
+    background-color: orange;
+}
+
+.correct {
+    background-color: limegreen;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+#overview {
+    width: 100%;
+}
+
+#overview ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#overview li {
+    display: block;
+    float: left;
+    width: 6.5%;
+    padding-right: 0.7%;
+}
+
+#level {
+    text-align: center;
+    height: 40px;
+    width:100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+#answer {
+    text-align: center;
+    height: 40px;
+    width:100%;
+    border-radius: 5px;
 }

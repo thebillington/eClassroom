@@ -110,6 +110,111 @@
                     //If the username of this teacher equals the username of the teacher that owns the class
                     if(t.getUsername().equals(usr)) {
                         
+                        //Get the lists of questions
+                        Question[] pQ = l.getPlacementQuestions();
+                        Question[] eQ = l.getEasyQuestions();
+                        Question[] mQ = l.getMediumQuestions();
+                        Question[] hQ = l.getHardQuestions();
+            
+                        out.print("<div id='attempt'>");
+            
+                        if(a.isComplete()) {
+            
+                            int[] level = a.getQuestionLevels();
+                            int[] answers = a.getAnswers();
+                            boolean[] correct = a.getCorrect();
+            
+                            out.print("<h4>Overview</h4>");
+                            out.print("<div id='overview'>");
+                                
+                            for(int i = 0; i < level.length; i++) {
+                                    //Print the correct color for each question and whether the student got it right
+                                    if(level[i] == 0) {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='easy'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                    else if(level[i] == 1) {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='medium'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                    else {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='hard'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                }
+            
+                                out.print("</ul></div><div><br><br><br><br><br>");
+                                                                
+                                for(int i = 0; i < level.length; i++) {
+            
+                                    out.print("<h4>Question " + (i + 1) + "</h4>");
+            
+                                    if(i < 3) {
+                                        out.print("<p>" + pQ[i].getQuestion() + "</p>");
+                                        out.print("<p>Correct answer: " + pQ[i].getAnswer(0) + "</p>");
+                                        out.print("<p>Chosen answer: " + pQ[i].getAnswer(answers[i]) + "</p>");
+                                    }
+                                    else {
+                                        if(level[i] == 0) {
+                                            out.print("<p>" + eQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + eQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + eQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                        else if(level[i] == 1) {
+                                            out.print("<p>" + mQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + mQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + mQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                        else {
+                                            out.print("<p>" + hQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + hQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + hQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                    }
+                                }
+                                out.print("</div>");
+                        }
+                        else {
+                            out.print("This lesson hasn't been completed yet.");
+                        }
+                            
+                        
+            
+                        out.print("</div>");
+            
                     }
                     //Logged in user doesn't own the lesson
                     else {
@@ -126,20 +231,117 @@
             
                     out.print("<div id='attempt'>");
         
+                    //If the student is assigned to this class
                     if(stud.hasClass(cls)) {
+                        //And if the student owns this attempt
                         if(stud.getUsername().equals(a.getUsername())) {
+                            //Get the lists of questions
                             Question[] pQ = l.getPlacementQuestions();
                             Question[] eQ = l.getEasyQuestions();
                             Question[] mQ = l.getMediumQuestions();
                             Question[] hQ = l.getHardQuestions();
             
+                            //If attempt is complete show the results
                             if(a.isComplete()) {
-                                out.print("Results");
+                                int[] level = a.getQuestionLevels();
+                                int[] answers = a.getAnswers();
+                                boolean[] correct = a.getCorrect();
+            
+                                out.print("<h4>Overview</h4>");
+                                out.print("<div id='overview'><ul>");
+                                
+                                for(int i = 0; i < level.length; i++) {
+                                    //Print the correct color for each question and whether the student got it right
+                                    if(level[i] == 0) {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='easy'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                    else if(level[i] == 1) {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='medium'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                    else {
+                                                                
+                                        out.print("<li>");
+                                                                
+                                        out.print("<div id='level' class='hard'>" + (i + 1) + "</div>");
+                                                                
+                                        if(correct[i]) {
+                                            out.print("<div id='answer' class='correct'></div>");              
+                                        }
+                                        else {
+                                            out.print("<div id='answer' class='incorrect'></div>");       
+                                        }
+                                                                
+                                        out.print("</li>");
+                                    }
+                                }
+            
+                                out.print("</ul></div><br><br><br><br><br><div>");
+                                                                
+                                for(int i = 0; i < level.length; i++) {
+            
+                                    out.print("<h4>Question " + (i + 1) + "</h4>");
+            
+                                    if(i < 3) {
+                                        out.print("<p>" + pQ[i].getQuestion() + "</p>");
+                                        out.print("<p>Correct answer: " + pQ[i].getAnswer(0) + "</p>");
+                                        out.print("<p>Chosen answer: " + pQ[i].getAnswer(answers[i]) + "</p>");
+                                    }
+                                    else {
+                                        if(level[i] == 0) {
+                                            out.print("<p>" + eQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + eQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + eQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                        else if(level[i] == 1) {
+                                            out.print("<p>" + mQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + mQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + mQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                        else {
+                                            out.print("<p>" + hQ[i - 3].getQuestion() + "</p>");
+                                            out.print("<p>Correct answer: " + hQ[i - 3].getAnswer(0) + "</p>");
+                                            out.print("<p>Chosen answer: " + hQ[i - 3].getAnswer(answers[i]) + "</p>");
+                                        }
+                                    }
+                                }
+                                out.print("</div>");
                             }
+                            //Otherwise show the next question and answers
                             else {
+                                //Otherwise get this questions number
                                 int qNo = a.getCompleted();
+                                
+                                //Create an object to store this question
                                 Question thisQuestion = null;
+            
+                                //If this question is not a placement question
                                 if(qNo > 2) {
+                                    //Get the question level and print the correct colour background
+                                    //Then get the question and store
                                     int level = a.getLevel();
                                     if(level == 0) {
                                         out.print("<div id='question' class='easy'>");
@@ -148,57 +350,72 @@
                                     if(level == 1) {
                                         out.print("<div id='question' class='medium'>");
                                         thisQuestion = mQ[qNo - 3];
-            
                                     }
                                     if(level == 2) {
                                         out.print("<div id='question' class='hard'>");
                                         thisQuestion = hQ[qNo - 3];
                                     }
                                 }
+                                //Otherwise it is a placement question
                                 else {
+                                    //Print the correct colour for the placement question
                                     if(qNo == 0) {
                                         out.print("<div id='question' class='easy'>");
                                     }
                                     if(qNo == 1) {
                                         out.print("<div id='question' class='medium'>");
-            
                                     }
                                     if(qNo == 2) {
                                         out.print("<div id='question' class='hard'>");
                                     }
+                                    //Then get the question and store
                                     thisQuestion = pQ[qNo];
                                 }
+            
+                                //If this question exists, print it
                                 if(thisQuestion != null) {
+                                    //Print the question
                                     out.print(thisQuestion.getQuestion());
+            
+                                    out.print("</div>");
+            
+                                    out.print("<div id='answers'><ul>");
+                                    
+                                    //Get the answers and shuffle
+                                    String[] answers = Question.shuffleAnswers(thisQuestion.getAnswers());
+            
+                                    //For each answer print the submit button
+                                    for(String s: answers) {
+                                        out.print("<li >");
+                                        out.print("<form action='attempt' method='POST' >");
+                                        out.print("<input type='hidden' name='request' value='answerquestion'>");
+                                        out.print("<input type='hidden' name='email' value='" + t.getEmail() + "'>");
+                                        out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
+                                        out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
+                                        out.print("<input type='hidden' name='studuser' value='" + stud.getUsername() + "'>");
+                                        out.print("<input type='hidden' name='attemptnumber' value='" + atn + "'>");
+                                        out.print("<input type='hidden' name='answer' value='" + s + "'>");
+                                        out.print("<input type='submit' value='" + s + "'/>");
+                                        out.print("</form>");
+                                        out.print("</li>");
+                                    }
+            
+                                    out.print("</ul>");
                                 }
+                                //Otherwise print the question wasn't found
+                                else {
+                                    out.print("<p>Question not found!</p>");
+                                }
+            
                                 out.print("</div>");
-            
-                                out.print("<div id='answers'><ul>");
-            
-                                String[] answers = Question.shuffleAnswers(thisQuestion.getAnswers());
-            
-                                for(String s: answers) {
-                                    out.print("<li >");
-                                    out.print("<form action='attempt' method='POST' >");
-                                    out.print("<input type='hidden' name='request' value='answerquestion'>");
-                                    out.print("<input type='hidden' name='email' value='" + t.getEmail() + "'>");
-                                    out.print("<input type='hidden' name='classname' value='" + sc.getName() + "'>");
-                                    out.print("<input type='hidden' name='lessonname' value='" + l.getName() + "'>");
-                                    out.print("<input type='hidden' name='studuser' value='" + stud.getUsername() + "'>");
-                                    out.print("<input type='hidden' name='attemptnumber' value='" + atn + "'>");
-                                    out.print("<input type='hidden' name='answer' value='" + s + "'>");
-                                    out.print("<input type='submit' value='" + s + "'/>");
-                                    out.print("</form>");
-                                    out.print("</li>");
-                                }
-            
-                                out.print("</ul></div>");
                             }
-                        }
+                        }  
+                        //The logged in user doesn't own view this attempt
                         else {
-                            out.print("You don't have permission to view this attempt.");
+                            out.print("<p>You don't have permission to view this attempt.</p>");
                         }
                     }
+                    //The user isn't subscribed to this class
                     else {
                         out.print("<p>Sorry, you aren't subscribed to this class!</p>");
                     }

@@ -29,7 +29,7 @@
                out.print("Sorry, that email is already in use.");
             }
             else if(msg.equals("bademail")) {
-               out.print("Sorry, there is no account on record with that username/password.");
+               out.print("Sorry, there is no account on record with that username/email.");
             }
             else if(msg.equals("badpass")) {
                out.print("Sorry, you have entered an incorrect password.");
