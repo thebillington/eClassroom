@@ -69,31 +69,3 @@
     padding-left: 20px;
     border-radius: 5px;
 }
-
-#work {
-    position: absolute;
-    width: 60%;
-    left: 35%;
-    overflow-y: scroll;
-    height: 90%;
-    top: 5%;
-    background-color: #999;
-    visibility: hidden;
-    padding-top: 20px;
-    padding-left: 20px;
-    border-radius: 5px;
-}
-
-#delete {
-    position: absolute;
-    width: 60%;
-    left: 35%;
-    overflow-y: scroll;
-    height: 90%;
-    top: 5%;
-    background-color: #999;
-    visibility: hidden;
-    padding-top: 20px;
-    padding-left: 20px;
-    border-radius: 5px;
-}

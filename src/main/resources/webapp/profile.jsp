@@ -39,8 +39,6 @@
                 <li id="viewOp" onclick="view()">Overview</li>
                 <li id="editOp" onclick="edit()">Edit Profile</li>
                 <li id="classesOp" onclick=classes()>My Classes</li>
-                <li id="workOp" onclick="work()">Work Due</li>
-                <li id="deleteOp" onclick="deleteUser()">Delete Account</li>
             </ul>
         </div>
         
@@ -197,14 +195,6 @@
             %>
             
             
-        </div>
-        
-        <div id="work">
-            Work
-        </div>
-        
-        <div id="delete">
-            Delete
         </div>
         
     </div>
