@@ -27,7 +27,7 @@ public class JettyServer {
 		Server server = new Server(8080);
 
 		//Set the context path of the web root
-		WebAppContext context = new WebAppContext();	
+		WebAppContext context = new WebAppContext();
 		context.setContextPath("/");
 		
 		//Try and set the web root to the webapp folder (this should never fail unless the file system is changed)
